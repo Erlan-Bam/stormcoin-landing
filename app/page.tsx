@@ -70,7 +70,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "coins to next",
     aboutUs: "About Us",
     aboutDescription:
-      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your crypto empire!",
+      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your empire!",
     tapEarn: "Tap & Earn",
     tapEarnDesc: "Earn by simply tapping",
     casinoGames: "Casino Games",
@@ -114,7 +114,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "coins to next",
     aboutUs: "About Us",
     aboutDescription:
-      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your crypto empire!",
+      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your empire!",
     tapEarn: "Tap & Earn",
     tapEarnDesc: "Earn by simply tapping",
     casinoGames: "Casino Games",
@@ -158,7 +158,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "monedas para el siguiente",
     aboutUs: "Sobre Nosotros",
     aboutDescription:
-      "StormCoin es una plataforma innovadora de tap-to-earn y juegos integrada con Telegram. ¡Gana monedas tocando, juega nuestros emocionantes juegos y construye tu imperio cripto!",
+      "StormCoin es una plataforma innovadora de tap-to-earn y juegos integrada con Telegram. ¡Gana monedas tocando, juega nuestros emocionantes juegos y construye tu imperio!",
     tapEarn: "Toca y Gana",
     tapEarnDesc: "Gana simplemente tocando",
     casinoGames: "Juegos de Casino",
@@ -202,7 +202,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "pièces pour le suivant",
     aboutUs: "À Propos",
     aboutDescription:
-      "StormCoin est une plateforme innovante de tap-to-earn et de jeux intégrée avec Telegram. Gagnez des pièces en tapant, jouez à nos jeux passionnants et construisez votre empire crypto!",
+      "StormCoin est une plateforme innovante de tap-to-earn et de jeux intégrée avec Telegram. Gagnez des pièces en tapant, jouez à nos jeux passionnants et construisez votre empire!",
     tapEarn: "Tapez & Gagnez",
     tapEarnDesc: "Gagnez simplement en tapant",
     casinoGames: "Jeux de Casino",
@@ -246,7 +246,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "monete al prossimo",
     aboutUs: "Chi Siamo",
     aboutDescription:
-      "StormCoin è una piattaforma innovativa di tap-to-earn e gaming integrata con Telegram. Guadagna monete toccando, gioca ai nostri giochi emozionanti e costruisci il tuo impero crypto!",
+      "StormCoin è una piattaforma innovativa di tap-to-earn e gaming integrata con Telegram. Guadagna monete toccando, gioca ai nostri giochi emozionanti e costruisci il tuo impero!",
     tapEarn: "Tap & Guadagna",
     tapEarnDesc: "Guadagna semplicemente toccando",
     casinoGames: "Giochi Casino",
@@ -290,7 +290,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "moedas para o próximo",
     aboutUs: "Sobre Nós",
     aboutDescription:
-      "StormCoin é uma plataforma inovadora de tap-to-earn e jogos integrada com Telegram. Ganhe moedas tocando, jogue nossos jogos emocionantes e construa seu império cripto!",
+      "StormCoin é uma plataforma inovadora de tap-to-earn e jogos integrada com Telegram. Ganhe moedas tocando, jogue nossos jogos emocionantes e construa seu império!",
     tapEarn: "Toque & Ganhe",
     tapEarnDesc: "Ganhe simplesmente tocando",
     casinoGames: "Jogos de Casino",
@@ -334,7 +334,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "Münzen zum nächsten",
     aboutUs: "Über Uns",
     aboutDescription:
-      "StormCoin ist eine innovative Tap-to-Earn- und Gaming-Plattform, die mit Telegram integriert ist. Verdiene Münzen durch Tippen, spiele unsere aufregenden Spiele und baue dein Krypto-Imperium auf!",
+      "StormCoin ist eine innovative Tap-to-Earn- und Gaming-Plattform, die mit Telegram integriert ist. Verdiene Münzen durch Tippen, spiele unsere aufregenden Spiele und baue dein Imperium auf!",
     tapEarn: "Tippen & Verdienen",
     tapEarnDesc: "Verdiene einfach durch Tippen",
     casinoGames: "Casino Spiele",
@@ -379,7 +379,7 @@ const translations: Record<Language, Translations> = {
     coinsTo: "mønter til næste",
     aboutUs: "Om Os",
     aboutDescription:
-      "StormCoin er en innovativ tap-to-earn og gaming platform integreret med Telegram. Tjen mønter ved at trykke, spil vores spændende spil og byg dit krypto-imperium!",
+      "StormCoin er en innovativ tap-to-earn og gaming platform integreret med Telegram. Tjen mønter ved at trykke, spil vores spændende spil og byg dit imperium!",
     tapEarn: "Tryk & Tjen",
     tapEarnDesc: "Tjen ved blot at trykke",
     casinoGames: "Casino Spil",
@@ -481,14 +481,14 @@ const CoinTurbo = ({ size = 32, className = "" }) => (
 
 // Language flags and names
 const languageData: Record<Language, { flag: string; name: string }> = {
-  "en-ca": { flag: "🇨🇦", name: "English (CA)" },
-  en: { flag: "🇺🇸", name: "English (US)" },
-  es: { flag: "🇪🇸", name: "Español" },
-  fr: { flag: "🇫🇷", name: "Français" },
-  it: { flag: "🇮🇹", name: "Italiano" },
-  pt: { flag: "🇵🇹", name: "Português" },
-  de: { flag: "🇩🇪", name: "Deutsch" },
-  dk: { flag: "🇩🇰", name: "Dansk" },
+  "en-ca": { flag: "/ca.png", name: "English (CA)" },
+  en: { flag: "/en.svg", name: "English (US)" },
+  es: { flag: "/es.png", name: "Español" },
+  fr: { flag: "/fr.png", name: "Français" },
+  it: { flag: "/it.svg", name: "Italiano" },
+  pt: { flag: "/pt.png", name: "Português" },
+  de: { flag: "/de.png", name: "Deutsch" },
+  dk: { flag: "/dk.svg", name: "Dansk" },
 };
 
 // Header Component with Language Selector
@@ -518,9 +518,13 @@ const Header = ({
             onClick={() => setShowLanguageMenu(!showLanguageMenu)}
             className="flex items-center gap-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-blue-500/50 rounded-xl px-3 py-2 transition-all duration-300"
           >
-            <span className="text-2xl">
-              {languageData[currentLanguage].flag}
-            </span>
+            <Image
+              src={languageData[currentLanguage].flag}
+              alt={languageData[currentLanguage].name}
+              width={24}
+              height={24}
+              className="object-contain"
+            />
             <span className="text-sm font-medium text-gray-300 hidden sm:block">
               {languageData[currentLanguage].name}
             </span>
@@ -557,7 +561,13 @@ const Header = ({
                       : "text-gray-300"
                   }`}
                 >
-                  <span className="text-2xl">{languageData[lang].flag}</span>
+                  <Image
+                    src={languageData[lang].flag}
+                    alt={languageData[lang].name}
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
                   <span className="font-medium">{languageData[lang].name}</span>
                   {currentLanguage === lang && (
                     <span className="ml-auto text-blue-400">✓</span>
@@ -583,7 +593,7 @@ const LoadingScreen = ({
 
   useEffect(() => {
     const loadingSteps = [
-      { progress: 20, text: "Connecting to blockchain..." },
+      { progress: 20, text: "Connecting to server..." },
       { progress: 40, text: "Loading lightning network..." },
       { progress: 60, text: "Preparing your wallet..." },
       { progress: 80, text: "Starting mining protocol..." },
