@@ -5,10 +5,11 @@
   margin: 0;
   border: none;
   box-sizing: border-box;
-  font-family: var(--font-manrope), "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scrollbar-width: none;
+  user-select: none;
 }
 
 :root {
@@ -19,57 +20,80 @@
   --primary-hover: #6b51e8;
 }
 
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   touch-action: pan-y;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom Animations */
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
+::-webkit-scrollbar {
+  width: 0px !important;
+  -webkit-appearance: none;
+  height: 0;
+  scrollbar-width: none !important;
+  display: none !important;
+  -ms-overflow-style: none !important;
 }
 
-.animate-blob {
-  animation: blob 7s infinite;
+/* Container structure matching the app */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+.container__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  flex-direction: column;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  position: relative;
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+.contains {
+  padding: 0px 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding-top: 20px;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Ripple Effect */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
+.contains::-webkit-scrollbar {
+  width: 0px !important;
+  -webkit-appearance: none;
+  height: 0;
+  scrollbar-width: none !important;
+  display: none !important;
+  -ms-overflow-style: none !important;
 }
 
 /* Smooth transitions */
@@ -80,26 +104,11 @@ button {
 /* Prevent text selection on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
 }
 
 /* Allow text selection for paragraphs */
 p {
   user-select: text;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: transparent;
 }
 
 /* iOS Safari specific fixes */
