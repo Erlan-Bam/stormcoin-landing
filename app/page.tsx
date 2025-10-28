@@ -1,7 +1,70 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import lightningVFX from "@/public/lightning-vfx.json";
+
+// Types
+type ToastType = "error" | "success" | "info";
+interface ToastData {
+  message: string;
+  type: ToastType;
+}
+
+// Toast Component
+const Toast = ({
+  message,
+  type = "info",
+  onClose,
+}: {
+  message: string;
+  type?: ToastType;
+  onClose: () => void;
+}) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  const bgColor =
+    type === "error"
+      ? "from-red-600 to-red-700"
+      : type === "success"
+      ? "from-green-600 to-green-700"
+      : "from-blue-600 to-blue-700";
+
+  return (
+    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-9999 animate-slideDown px-4 w-full max-w-[400px]">
+      <div
+        className={`bg-linear-to-r ${bgColor} text-white px-4 py-3 rounded-2xl shadow-2xl backdrop-blur-lg border border-white/20 flex items-center gap-2 w-full`}
+      >
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          {type === "error" && (
+            <div className="text-2xl animate-bounce shrink-0">⚠️</div>
+          )}
+          {type === "success" && (
+            <div className="text-2xl animate-bounce shrink-0">⚡</div>
+          )}
+          {type === "info" && (
+            <div className="text-2xl animate-pulse shrink-0">ℹ️</div>
+          )}
+          <p className="font-semibold text-sm sm:text-base leading-tight truncate">
+            {message}
+          </p>
+        </div>
+        <button
+          onClick={onClose}
+          className="text-white/80 hover:text-white text-xl leading-none shrink-0 w-6 h-6 flex items-center justify-center"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  );
+};
 
 // CoinTurbo Component
 const CoinTurbo = ({ size = 32, className = "" }) => (
@@ -15,7 +78,11 @@ const CoinTurbo = ({ size = 32, className = "" }) => (
 );
 
 // Loading Screen Component
-const LoadingScreen = ({ onLoadingComplete }) => {
+const LoadingScreen = ({
+  onLoadingComplete,
+}: {
+  onLoadingComplete: () => void;
+}) => {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState("Initializing StormCoin...");
 
@@ -220,6 +287,39 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
   const [currentBalance, setCurrentBalance] = useState(7);
+  const [energy, setEnergy] = useState(500);
+  const [toast, setToast] = useState<ToastData | null>(null);
+  const [tapAnimation, setTapAnimation] = useState(false);
+  const [boostCooldown, setBoostCooldown] = useState(false);
+  const [showLightningVFX, setShowLightningVFX] = useState(false);
+  const [ambientLightning, setAmbientLightning] = useState<number[]>([]);
+  const tapTimestamps = useRef<number[]>([]);
+
+  // Removed ambient lightning effect to improve performance
+
+  // Load state from localStorage on mount
+  useEffect(() => {
+    const savedBalance = localStorage.getItem("stormcoin_balance");
+    const savedEnergy = localStorage.getItem("stormcoin_energy");
+
+    if (savedBalance) setCurrentBalance(parseInt(savedBalance));
+    if (savedEnergy) setEnergy(parseInt(savedEnergy));
+  }, []);
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("stormcoin_balance", currentBalance.toString());
+    localStorage.setItem("stormcoin_energy", energy.toString());
+  }, [currentBalance, energy]);
+
+  // Reset energy to 500 on page reload (after initial load)
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("stormcoin_reloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("stormcoin_reloaded", "true");
+      setEnergy(500);
+    }
+  }, []);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -227,6 +327,74 @@ export default function Home() {
       setIsVisible(true);
     }, 300);
   };
+
+  const showToast = (message: string, type: ToastType = "info") => {
+    setToast({ message, type });
+  };
+
+  const handleTabClick = (tabId: string) => {
+    if (tabId === "Home") {
+      setActiveTab(tabId);
+    } else {
+      // Show notification before navigating
+      showToast("Opening Telegram Bot...", "info");
+      // Navigate to Telegram bot for other tabs
+      const botUsername = "TheStormCoin_bot"; // TODO: Replace with your actual bot username
+      setTimeout(() => {
+        window.open(`https://t.me/${botUsername}`, "_blank");
+      }, 500);
+    }
+  };
+
+  const handleTapCoin = () => {
+    if (energy <= 0) {
+      showToast("No energy left! Use Boost to refill!", "error");
+      return;
+    }
+
+    // Track tap timestamps for rapid tapping detection
+    const now = Date.now();
+    tapTimestamps.current.push(now);
+
+    // Keep only taps from the last 2 seconds
+    tapTimestamps.current = tapTimestamps.current.filter(
+      (timestamp) => now - timestamp < 2000
+    );
+
+    // If user taps more than 10 times in 2 seconds, show lightning VFX
+    if (tapTimestamps.current.length > 10 && !showLightningVFX) {
+      setShowLightningVFX(true);
+      setTimeout(() => setShowLightningVFX(false), 3000);
+    }
+
+    // Decrease energy by 1
+    setEnergy((prev) => Math.max(0, prev - 1));
+    // Increase balance by 1
+    setCurrentBalance((prev) => prev + 1);
+    // Trigger tap animation
+    setTapAnimation(true);
+    setTimeout(() => setTapAnimation(false), 200);
+  };
+
+  const handleBoost = () => {
+    if (boostCooldown) {
+      showToast("Boost is on cooldown! Wait a moment.", "info");
+      return;
+    }
+
+    // Refill energy to 500
+    setEnergy(500);
+    showToast("Energy fully restored! Keep tapping!", "success");
+
+    // Set cooldown for 3 seconds
+    setBoostCooldown(true);
+    setTimeout(() => {
+      setBoostCooldown(false);
+    }, 3000);
+  };
+
+  const energyPercentage = (energy / 500) * 100;
+  const levelProgress = ((currentBalance % 100) / 100) * 100; // Simple level system
 
   if (isLoading) {
     return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
@@ -406,14 +574,12 @@ export default function Home() {
     },
   ];
 
-  const handleTapCoin = () => {
-    setCurrentBalance(currentBalance + 1);
-  };
-
   return (
     <div className="min-h-screen bg-linear-to-b from-[#0a0a0f] via-[#0f1020] to-[#1a1a2e] text-white relative overflow-hidden">
       {/* Lightning Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Ambient Lightning removed for performance */}
+
         {/* Animated Lightning Bolts */}
         <div className="absolute top-10 left-10 w-48 h-48 opacity-20">
           <div className="absolute inset-0 bg-linear-to-br from-blue-400/30 via-purple-500/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
@@ -486,6 +652,15 @@ export default function Home() {
 
       {/* Main App Container */}
       <div className="container w-full max-w-[400px] mx-auto h-screen relative z-10">
+        {/* Toast Notification */}
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
+
         <div className="flex flex-col h-full bg-black/30 backdrop-blur-sm border-l border-r border-gray-800/30">
           {/* Main Content */}
           <div className="flex-1 px-5 pb-24 overflow-y-auto">
@@ -496,12 +671,19 @@ export default function Home() {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="text-center mb-8 mt-12">
+              {/* Balance Section */}
+              <div className="text-center mb-6 mt-8">
                 <div className="text-blue-400 text-lg font-medium mb-2">
                   Saldo
                 </div>
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <span className="text-7xl font-bold">{currentBalance}</span>
+                  <span
+                    className={`text-7xl font-bold transition-all duration-300 ${
+                      tapAnimation ? "scale-110 text-blue-400" : ""
+                    }`}
+                  >
+                    {currentBalance}
+                  </span>
                   <CoinTurbo size={40} />
                 </div>
                 <div className="flex items-center justify-center gap-6 text-gray-400">
@@ -514,38 +696,377 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-              <div className="flex justify-center mb-12">
+
+              {/* Tapping Coin Section */}
+              <div className="flex justify-center mb-8 relative">
+                {/* Optimized Lightning VFX - Only 3 animations for performance */}
+                {showLightningVFX && (
+                  <>
+                    {/* Center Main Lightning - Reduced Size */}
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center"
+                      style={{
+                        marginTop: "-60px",
+                        marginBottom: "-60px",
+                        animation: "fadeInOut 2.5s ease-in-out",
+                      }}
+                    >
+                      <div className="w-[300px] h-[300px]">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Top Small Lightning */}
+                    <div
+                      className="absolute z-15 pointer-events-none"
+                      style={{
+                        top: "-40px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        animation: "fadeInOut 2s ease-in-out 0.15s",
+                      }}
+                    >
+                      <div className="w-[140px] h-[140px] opacity-50">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Bottom Small Lightning */}
+                    <div
+                      className="absolute z-15 pointer-events-none"
+                      style={{
+                        bottom: "-40px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        animation: "fadeInOut 2.2s ease-in-out 0.1s",
+                      }}
+                    >
+                      <div className="w-[150px] h-[150px] opacity-45">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 <button
                   onClick={handleTapCoin}
-                  className="relative w-64 h-64 rounded-full bg-linear-to-b from-[#2d3250] via-[#1e213a] to-[#141629] border-8 border-blue-500/30 flex items-center justify-center shadow-2xl active:scale-95 transition-all duration-200"
+                  disabled={energy <= 0}
+                  className={`relative w-64 h-64 rounded-full bg-linear-to-b from-[#2d3250] via-[#1e213a] to-[#141629] border-8 flex items-center justify-center shadow-2xl transition-all duration-200 ${
+                    energy <= 0
+                      ? "border-red-500/50 opacity-50 cursor-not-allowed"
+                      : "border-blue-500/30 active:scale-95 hover:border-blue-500/50"
+                  } ${tapAnimation ? "scale-95" : ""}`}
                 >
-                  <CoinTurbo size={512} />
-                </button>
-              </div>
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-4 bg-gray-700 rounded-sm flex items-center">
-                    <div className="w-4 h-2 bg-linear-to-r from-green-400 to-green-500 rounded-sm ml-0.5"></div>
+                  <div
+                    className={`transition-all duration-200 ${
+                      tapAnimation ? "scale-110" : ""
+                    }`}
+                  >
+                    <CoinTurbo size={512} />
                   </div>
-                  <span className="text-white font-medium">493 / 500</span>
+                  {/* Tap effect ripples */}
+                  {tapAnimation && (
+                    <>
+                      <div className="absolute inset-0 rounded-full border-4 border-blue-400 animate-ping opacity-75"></div>
+                      <div className="absolute inset-0 rounded-full bg-blue-400/20 animate-pulse"></div>
+                    </>
+                  )}
+                </button>
+                {/* +1 floating animation */}
+                {tapAnimation && (
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl font-bold text-blue-400 animate-floatUp pointer-events-none">
+                    +1
+                  </div>
+                )}
+              </div>
+
+              {/* Energy and Boost Section */}
+              <div className="flex items-center justify-between mb-8 relative">
+                <div className="flex items-center gap-3">
+                  <div className="relative w-8 h-8 flex items-center justify-center">
+                    <svg
+                      className={`w-8 h-8 transform -rotate-90 ${
+                        energy <= 100 ? "animate-pulse" : ""
+                      }`}
+                      viewBox="0 0 32 32"
+                    >
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="14"
+                        fill="none"
+                        stroke="#374151"
+                        strokeWidth="3"
+                      />
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="14"
+                        fill="none"
+                        stroke={energy <= 100 ? "#ef4444" : "#10b981"}
+                        strokeWidth="3"
+                        strokeDasharray={`${
+                          (energyPercentage / 100) * 87.96
+                        } 87.96`}
+                        strokeLinecap="round"
+                        className="transition-all duration-300"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span
+                        className={`text-xs font-bold ${
+                          energy <= 100 ? "text-red-400" : "text-green-400"
+                        }`}
+                      >
+                        ⚡
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span
+                      className={`font-bold text-lg ${
+                        energy <= 100 ? "text-red-400" : "text-white"
+                      }`}
+                    >
+                      {energy} / 500
+                    </span>
+                    <span className="text-xs text-gray-400">Energy</span>
+                  </div>
                 </div>
-                <button className="px-6 py-3 bg-linear-to-r from-blue-600 to-cyan-500 rounded-2xl font-bold text-white shadow-lg active:scale-95 transition-all">
+                <button
+                  onClick={handleBoost}
+                  disabled={boostCooldown || energy === 500}
+                  className={`px-6 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
+                    boostCooldown || energy === 500
+                      ? "bg-gray-600 opacity-50 cursor-not-allowed"
+                      : "bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 active:scale-95 hover:shadow-xl hover:shadow-blue-500/50"
+                  }`}
+                >
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">🚀</span>
-                    <span>Boost</span>
+                    <span>{boostCooldown ? "Cooldown..." : "Boost"}</span>
                   </div>
                 </button>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700/50">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-gray-300">Al prossimo livello</span>
-                  <span className="text-white font-semibold">0 %</span>
+
+              {/* Level Progress */}
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 mb-8">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🎯</span>
+                    <span className="text-gray-300 font-medium">
+                      Al prossimo livello
+                    </span>
+                  </div>
+                  <span className="text-white font-bold text-lg">
+                    {Math.floor(levelProgress)} %
+                  </span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
                   <div
-                    className="bg-linear-to-r from-blue-500 to-cyan-400 h-2 rounded-full"
-                    style={{ width: "0%" }}
-                  ></div>
+                    className="bg-linear-to-r from-blue-500 via-cyan-400 to-blue-500 h-3 rounded-full transition-all duration-500 relative overflow-hidden"
+                    style={{ width: `${levelProgress}%` }}
+                  >
+                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                  </div>
+                </div>
+                <div className="mt-2 text-xs text-gray-400 text-center">
+                  Level {Math.floor(currentBalance / 100) + 1} •{" "}
+                  {currentBalance % 100}/100 coins to next
+                </div>
+              </div>
+
+              {/* About Us Section */}
+              <div className="mb-8">
+                <div className="bg-linear-to-br from-gray-800/40 via-gray-900/40 to-gray-800/40 backdrop-blur-md rounded-3xl p-6 border border-gray-700/30 shadow-2xl">
+                  <div className="text-center mb-4">
+                    <h2 className="text-2xl font-extrabold bg-linear-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent mb-3">
+                      Chi Siamo
+                    </h2>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      StormCoin è una piattaforma innovativa di tap-to-earn e gaming integrata con Telegram. Guadagna monete toccando, gioca ai nostri giochi emozionanti e costruisci il tuo impero crypto!
+                    </p>
+                  </div>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    {/* Feature 1 */}
+                    <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
+                      <div className="text-3xl mb-2 text-center">⚡</div>
+                      <div className="text-xs font-bold text-blue-400 text-center mb-1">
+                        Tap & Earn
+                      </div>
+                      <div className="text-[10px] text-gray-400 text-center">
+                        Guadagna semplicemente toccando
+                      </div>
+                    </div>
+
+                    {/* Feature 2 */}
+                    <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                      <div className="text-3xl mb-2 text-center">🎰</div>
+                      <div className="text-xs font-bold text-purple-400 text-center mb-1">
+                        Casino Games
+                      </div>
+                      <div className="text-[10px] text-gray-400 text-center">
+                        Plinko, Crash, Roulette
+                      </div>
+                    </div>
+
+                    {/* Feature 3 */}
+                    <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300">
+                      <div className="text-3xl mb-2 text-center">👥</div>
+                      <div className="text-xs font-bold text-cyan-400 text-center mb-1">
+                        Referral System
+                      </div>
+                      <div className="text-[10px] text-gray-400 text-center">
+                        Guadagna invitando amici
+                      </div>
+                    </div>
+
+                    {/* Feature 4 */}
+                    <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-green-500/20 hover:border-green-500/40 transition-all duration-300">
+                      <div className="text-3xl mb-2 text-center">💰</div>
+                      <div className="text-xs font-bold text-green-400 text-center mb-1">
+                        Fast Withdrawals
+                      </div>
+                      <div className="text-[10px] text-gray-400 text-center">
+                        Preleva velocemente
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="bg-linear-to-r from-blue-600/10 to-purple-600/10 rounded-xl p-4 border border-blue-500/20">
+                    <div className="text-center mb-2">
+                      <span className="text-xs font-semibold text-blue-300">
+                        🚀 Powered By
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] text-gray-400">
+                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
+                        React
+                      </span>
+                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
+                        Telegram SDK
+                      </span>
+                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
+                        Socket.io
+                      </span>
+                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
+                        Zustand
+                      </span>
+                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
+                        Framer Motion
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hero Section - Why Join */}
+              <div className="mb-8">
+                <div className="bg-linear-to-br from-blue-600/20 via-purple-600/20 to-cyan-600/20 backdrop-blur-md rounded-3xl p-6 border border-blue-500/30 shadow-2xl">
+                  <div className="text-center mb-4">
+                    <h2 className="text-3xl font-extrabold bg-linear-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent mb-2">
+                      ⚡ Benvenuto su StormCoin! ⚡
+                    </h2>
+                    <p className="text-gray-300 text-sm">
+                      Guadagna, gioca e vinci con i nostri giochi emozionanti!
+                    </p>
+                  </div>
+
+                  {/* Games Grid */}
+                  <div className="grid grid-cols-3 gap-3 mb-4">
+                    {/* Plinko Game */}
+                    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-3 border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer">
+                      <div className="text-center">
+                        <div className="text-3xl mb-2">🎯</div>
+                        <div className="text-xs font-bold text-blue-400">
+                          Plinko
+                        </div>
+                        <div className="text-[10px] text-gray-400 mt-1">
+                          Drop & Win
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Crash Game */}
+                    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-3 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 cursor-pointer">
+                      <div className="text-center">
+                        <div className="text-3xl mb-2">🚀</div>
+                        <div className="text-xs font-bold text-purple-400">
+                          Crash
+                        </div>
+                        <div className="text-[10px] text-gray-400 mt-1">
+                          Fly High
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Roulette Game */}
+                    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-3 border border-red-500/20 hover:border-red-500/50 transition-all duration-300 hover:scale-105 cursor-pointer">
+                      <div className="text-center">
+                        <div className="text-3xl mb-2">🎰</div>
+                        <div className="text-xs font-bold text-red-400">
+                          Roulette
+                        </div>
+                        <div className="text-[10px] text-gray-400 mt-1">
+                          Spin Now
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-300">
+                        Tap per guadagnare coins gratis
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-300">
+                        Giochi emozionanti 24/7
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-300">
+                        Invita amici e guadagna bonus
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-400">✓</span>
+                      <span className="text-gray-300">
+                        Prelievi veloci e sicuri
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <button
+                    onClick={() => handleTabClick("Gioco")}
+                    className="w-full bg-linear-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-500 hover:via-purple-500 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 active:scale-95"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-2xl">🎮</span>
+                      <span>Gioca Ora nel Bot!</span>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -557,7 +1078,7 @@ export default function Home() {
               {tabItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => handleTabClick(item.id)}
                   className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-300 ${
                     activeTab === item.id
                       ? "bg-blue-600/20 text-blue-400 scale-105"
