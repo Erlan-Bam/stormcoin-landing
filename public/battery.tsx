@@ -1,0 +1,75 @@
+import React from "react";
+import { BatteryLevelColor } from "../../Components/Indicator/items/BatteryItem";
+
+interface BatteryIconProps {
+  level: BatteryLevelColor;
+  className?: string;
+}
+
+const getColor = (level: BatteryLevelColor) => {
+  switch (level) {
+    case "blue":
+      return "#2E5CFF";
+    case "bluelower":
+      return "#2E5CFF";
+    case "yellow":
+      return "#FFD600";
+    case "red":
+      return "#FF4D4F";
+    default:
+      return "transparent";
+  }
+};
+
+export const BatteryIcon: React.FC<BatteryIconProps> = ({
+  level,
+  className,
+}) => {
+  const color = getColor(level);
+
+  // Определяем количество "заряженных" блоков
+  const fillCount = {
+    blue: 5,
+    bluelower: 4,
+    yellow: 3,
+    red: 2,
+    empty: 1,
+  }[level];
+
+  return (
+    <svg
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* Заряженные прямоугольники */}
+      {Array.from({ length: fillCount }).map((_, i) => (
+        <rect
+          key={i}
+          x="9"
+          y={19.4336 - i * 3} // по 3px высоты на блок
+          width="6"
+          height="3"
+          fill={color}
+        />
+      ))}
+
+      {/* Контур батареи */}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6 6.43359L6 19.4336C6 20.2292 6.31607 20.9923 6.87868 21.5549C7.44129 22.1175 8.20435 22.4336 9 22.4336L15 22.4336C15.7956 22.4336 16.5587 22.1175 17.1213 21.5549C17.6839 20.9923 18 20.2292 18 19.4336L18 6.43359C18 5.63794 17.6839 4.87488 17.1213 4.31227C16.5587 3.74966 15.7956 3.43359 15 3.43359C15 3.16838 14.8946 2.91402 14.7071 2.72649C14.5196 2.53895 14.2652 2.43359 14 2.43359L10 2.43359C9.73478 2.43359 9.48043 2.53895 9.29289 2.72649C9.10536 2.91402 9 3.16838 9 3.43359C8.20435 3.43359 7.44129 3.74966 6.87868 4.31227C6.31607 4.87488 6 5.63795 6 6.43359ZM8 6.43359L8 19.4336C8 19.6988 8.10536 19.9532 8.29289 20.1407C8.48043 20.3282 8.73478 20.4336 9 20.4336L15 20.4336C15.2652 20.4336 15.5196 20.3282 15.7071 20.1407C15.8946 19.9532 16 19.6988 16 19.4336L16 6.43359C16 6.16838 15.8946 5.91402 15.7071 5.72649C15.5196 5.53895 15.2652 5.43359 15 5.43359L9 5.43359C8.73478 5.43359 8.48043 5.53895 8.29289 5.72649C8.10536 5.91402 8 6.16838 8 6.43359Z"
+        fill="white"
+      />
+
+      {/* Верхний выступ батареи */}
+      <path
+        d="M15 18.4336C15 18.6988 14.8946 18.9532 14.7071 19.1407C14.5196 19.3282 14.2652 19.4336 14 19.4336L10 19.4336C9.73478 19.4336 9.48043 19.3282 9.29289 19.1407C9.10536 18.9532 9 18.6988 9 18.4336L9 10.4336L15 10.4336L15 18.4336Z"
+        fill="none"
+      />
+    </svg>
+  );
+};
