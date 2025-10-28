@@ -896,7 +896,10 @@ export default function Home() {
                       Chi Siamo
                     </h2>
                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                      StormCoin è una piattaforma innovativa di tap-to-earn e gaming integrata con Telegram. Guadagna monete toccando, gioca ai nostri giochi emozionanti e costruisci il tuo impero crypto!
+                      StormCoin è una piattaforma innovativa di tap-to-earn e
+                      gaming integrata con Telegram. Guadagna monete toccando,
+                      gioca ai nostri giochi emozionanti e costruisci il tuo
+                      impero crypto!
                     </p>
                   </div>
 
