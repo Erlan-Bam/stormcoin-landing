@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 * {
-  padding: 0;
-  margin: 0;
   border: none;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -10,14 +8,17 @@
   text-rendering: optimizeLegibility;
   scrollbar-width: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-  --background: #0b0b11;
+  --background: #0a0a0f;
   --foreground: #ffffff;
-  --card-bg: #181820;
-  --primary: #563fdd;
-  --primary-hover: #6b51e8;
+  --card-bg: #1a1a2e;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --secondary: #06b6d4;
+  --accent: #8b5cf6;
 }
 
 @font-face {
@@ -35,14 +36,21 @@ body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html,
 body {
-  height: 100%;
+  height: 100vh;
+  height: -webkit-fill-available;
   overflow: hidden;
   position: fixed;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 html {
