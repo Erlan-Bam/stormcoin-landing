@@ -12,6 +12,408 @@ interface ToastData {
   type: ToastType;
 }
 
+type Language = "en" | "en-ca" | "es" | "fr" | "it" | "pt" | "de" | "dk";
+
+interface Translations {
+  balance: string;
+  perHour: string;
+  perTap: string;
+  boost: string;
+  cooldown: string;
+  nextLevel: string;
+  level: string;
+  coinsTo: string;
+  aboutUs: string;
+  aboutDescription: string;
+  tapEarn: string;
+  tapEarnDesc: string;
+  casinoGames: string;
+  casinoGamesDesc: string;
+  referralSystem: string;
+  referralSystemDesc: string;
+  fastWithdrawals: string;
+  fastWithdrawalsDesc: string;
+  poweredBy: string;
+  welcomeTitle: string;
+  welcomeSubtitle: string;
+  plinko: string;
+  plinkoDesc: string;
+  crash: string;
+  crashDesc: string;
+  roulette: string;
+  rouletteDesc: string;
+  feature1: string;
+  feature2: string;
+  feature3: string;
+  feature4: string;
+  playNow: string;
+  home: string;
+  income: string;
+  earn: string;
+  game: string;
+  friends: string;
+  energy: string;
+  noEnergy: string;
+  energyRestored: string;
+  openingBot: string;
+}
+
+const translations: Record<Language, Translations> = {
+  en: {
+    balance: "Balance",
+    perHour: "per hour",
+    perTap: "per tap",
+    boost: "Boost",
+    cooldown: "Cooldown...",
+    nextLevel: "To next level",
+    level: "Level",
+    coinsTo: "coins to next",
+    aboutUs: "About Us",
+    aboutDescription:
+      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your crypto empire!",
+    tapEarn: "Tap & Earn",
+    tapEarnDesc: "Earn by simply tapping",
+    casinoGames: "Casino Games",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Referral System",
+    referralSystemDesc: "Earn by inviting friends",
+    fastWithdrawals: "Fast Withdrawals",
+    fastWithdrawalsDesc: "Withdraw quickly",
+    poweredBy: "Powered By",
+    welcomeTitle: "⚡ Welcome to StormCoin! ⚡",
+    welcomeSubtitle: "Earn, play and win with our exciting games!",
+    plinko: "Plinko",
+    plinkoDesc: "Drop & Win",
+    crash: "Crash",
+    crashDesc: "Fly High",
+    roulette: "Roulette",
+    rouletteDesc: "Spin Now",
+    feature1: "Tap to earn free coins",
+    feature2: "Exciting games 24/7",
+    feature3: "Invite friends and earn bonuses",
+    feature4: "Fast and secure withdrawals",
+    playNow: "Play Now in Bot!",
+    home: "Home",
+    income: "Income",
+    earn: "Earn",
+    game: "Game",
+    friends: "Friends",
+    energy: "Energy",
+    noEnergy: "No energy left! Use Boost to refill!",
+    energyRestored: "Energy fully restored! Keep tapping!",
+    openingBot: "Opening Telegram Bot...",
+  },
+  "en-ca": {
+    balance: "Balance",
+    perHour: "per hour",
+    perTap: "per tap",
+    boost: "Boost",
+    cooldown: "Cooldown...",
+    nextLevel: "To next level",
+    level: "Level",
+    coinsTo: "coins to next",
+    aboutUs: "About Us",
+    aboutDescription:
+      "StormCoin is an innovative tap-to-earn and gaming platform integrated with Telegram. Earn coins by tapping, play our exciting games and build your crypto empire!",
+    tapEarn: "Tap & Earn",
+    tapEarnDesc: "Earn by simply tapping",
+    casinoGames: "Casino Games",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Referral System",
+    referralSystemDesc: "Earn by inviting friends",
+    fastWithdrawals: "Fast Withdrawals",
+    fastWithdrawalsDesc: "Withdraw quickly",
+    poweredBy: "Powered By",
+    welcomeTitle: "⚡ Welcome to StormCoin! ⚡",
+    welcomeSubtitle: "Earn, play and win with our exciting games!",
+    plinko: "Plinko",
+    plinkoDesc: "Drop & Win",
+    crash: "Crash",
+    crashDesc: "Fly High",
+    roulette: "Roulette",
+    rouletteDesc: "Spin Now",
+    feature1: "Tap to earn free coins",
+    feature2: "Exciting games 24/7",
+    feature3: "Invite friends and earn bonuses",
+    feature4: "Fast and secure withdrawals",
+    playNow: "Play Now in Bot!",
+    home: "Home",
+    income: "Income",
+    earn: "Earn",
+    game: "Game",
+    friends: "Friends",
+    energy: "Energy",
+    noEnergy: "No energy left! Use Boost to refill!",
+    energyRestored: "Energy fully restored! Keep tapping!",
+    openingBot: "Opening Telegram Bot...",
+  },
+  es: {
+    balance: "Saldo",
+    perHour: "por hora",
+    perTap: "por toque",
+    boost: "Impulso",
+    cooldown: "Enfriamiento...",
+    nextLevel: "Al siguiente nivel",
+    level: "Nivel",
+    coinsTo: "monedas para el siguiente",
+    aboutUs: "Sobre Nosotros",
+    aboutDescription:
+      "StormCoin es una plataforma innovadora de tap-to-earn y juegos integrada con Telegram. ¡Gana monedas tocando, juega nuestros emocionantes juegos y construye tu imperio cripto!",
+    tapEarn: "Toca y Gana",
+    tapEarnDesc: "Gana simplemente tocando",
+    casinoGames: "Juegos de Casino",
+    casinoGamesDesc: "Plinko, Crash, Ruleta",
+    referralSystem: "Sistema de Referidos",
+    referralSystemDesc: "Gana invitando amigos",
+    fastWithdrawals: "Retiros Rápidos",
+    fastWithdrawalsDesc: "Retira rápidamente",
+    poweredBy: "Impulsado Por",
+    welcomeTitle: "⚡ ¡Bienvenido a StormCoin! ⚡",
+    welcomeSubtitle: "¡Gana, juega y vence con nuestros emocionantes juegos!",
+    plinko: "Plinko",
+    plinkoDesc: "Suelta y Gana",
+    crash: "Crash",
+    crashDesc: "Vuela Alto",
+    roulette: "Ruleta",
+    rouletteDesc: "Gira Ahora",
+    feature1: "Toca para ganar monedas gratis",
+    feature2: "Juegos emocionantes 24/7",
+    feature3: "Invita amigos y gana bonos",
+    feature4: "Retiros rápidos y seguros",
+    playNow: "¡Juega Ahora en el Bot!",
+    home: "Inicio",
+    income: "Ingresos",
+    earn: "Ganar",
+    game: "Juego",
+    friends: "Amigos",
+    energy: "Energía",
+    noEnergy: "¡Sin energía! ¡Usa Impulso para recargar!",
+    energyRestored: "¡Energía completamente restaurada! ¡Sigue tocando!",
+    openingBot: "Abriendo Bot de Telegram...",
+  },
+  fr: {
+    balance: "Solde",
+    perHour: "par heure",
+    perTap: "par tap",
+    boost: "Boost",
+    cooldown: "Refroidissement...",
+    nextLevel: "Au niveau suivant",
+    level: "Niveau",
+    coinsTo: "pièces pour le suivant",
+    aboutUs: "À Propos",
+    aboutDescription:
+      "StormCoin est une plateforme innovante de tap-to-earn et de jeux intégrée avec Telegram. Gagnez des pièces en tapant, jouez à nos jeux passionnants et construisez votre empire crypto!",
+    tapEarn: "Tapez & Gagnez",
+    tapEarnDesc: "Gagnez simplement en tapant",
+    casinoGames: "Jeux de Casino",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Système de Parrainage",
+    referralSystemDesc: "Gagnez en invitant des amis",
+    fastWithdrawals: "Retraits Rapides",
+    fastWithdrawalsDesc: "Retirez rapidement",
+    poweredBy: "Propulsé Par",
+    welcomeTitle: "⚡ Bienvenue sur StormCoin! ⚡",
+    welcomeSubtitle: "Gagnez, jouez et gagnez avec nos jeux passionnants!",
+    plinko: "Plinko",
+    plinkoDesc: "Déposez & Gagnez",
+    crash: "Crash",
+    crashDesc: "Volez Haut",
+    roulette: "Roulette",
+    rouletteDesc: "Tournez Maintenant",
+    feature1: "Tapez pour gagner des pièces gratuites",
+    feature2: "Jeux passionnants 24/7",
+    feature3: "Invitez des amis et gagnez des bonus",
+    feature4: "Retraits rapides et sécurisés",
+    playNow: "Jouez Maintenant dans le Bot!",
+    home: "Accueil",
+    income: "Revenu",
+    earn: "Gagner",
+    game: "Jeu",
+    friends: "Amis",
+    energy: "Énergie",
+    noEnergy: "Plus d'énergie! Utilisez Boost pour recharger!",
+    energyRestored: "Énergie complètement restaurée! Continuez à taper!",
+    openingBot: "Ouverture du Bot Telegram...",
+  },
+  it: {
+    balance: "Saldo",
+    perHour: "all'ora",
+    perTap: "per tap",
+    boost: "Boost",
+    cooldown: "Raffreddamento...",
+    nextLevel: "Al prossimo livello",
+    level: "Livello",
+    coinsTo: "monete al prossimo",
+    aboutUs: "Chi Siamo",
+    aboutDescription:
+      "StormCoin è una piattaforma innovativa di tap-to-earn e gaming integrata con Telegram. Guadagna monete toccando, gioca ai nostri giochi emozionanti e costruisci il tuo impero crypto!",
+    tapEarn: "Tap & Guadagna",
+    tapEarnDesc: "Guadagna semplicemente toccando",
+    casinoGames: "Giochi Casino",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Sistema Referral",
+    referralSystemDesc: "Guadagna invitando amici",
+    fastWithdrawals: "Prelievi Veloci",
+    fastWithdrawalsDesc: "Preleva velocemente",
+    poweredBy: "Alimentato Da",
+    welcomeTitle: "⚡ Benvenuto su StormCoin! ⚡",
+    welcomeSubtitle: "Guadagna, gioca e vinci con i nostri giochi emozionanti!",
+    plinko: "Plinko",
+    plinkoDesc: "Drop & Win",
+    crash: "Crash",
+    crashDesc: "Vola Alto",
+    roulette: "Roulette",
+    rouletteDesc: "Gira Ora",
+    feature1: "Tap per guadagnare coins gratis",
+    feature2: "Giochi emozionanti 24/7",
+    feature3: "Invita amici e guadagna bonus",
+    feature4: "Prelievi veloci e sicuri",
+    playNow: "Gioca Ora nel Bot!",
+    home: "Home",
+    income: "Entrate",
+    earn: "Guadagna",
+    game: "Gioco",
+    friends: "Amici",
+    energy: "Energia",
+    noEnergy: "Nessuna energia! Usa Boost per ricaricare!",
+    energyRestored: "Energia completamente ripristinata! Continua a tappare!",
+    openingBot: "Apertura Bot Telegram...",
+  },
+  pt: {
+    balance: "Saldo",
+    perHour: "por hora",
+    perTap: "por toque",
+    boost: "Impulso",
+    cooldown: "Resfriamento...",
+    nextLevel: "Para o próximo nível",
+    level: "Nível",
+    coinsTo: "moedas para o próximo",
+    aboutUs: "Sobre Nós",
+    aboutDescription:
+      "StormCoin é uma plataforma inovadora de tap-to-earn e jogos integrada com Telegram. Ganhe moedas tocando, jogue nossos jogos emocionantes e construa seu império cripto!",
+    tapEarn: "Toque & Ganhe",
+    tapEarnDesc: "Ganhe simplesmente tocando",
+    casinoGames: "Jogos de Casino",
+    casinoGamesDesc: "Plinko, Crash, Roleta",
+    referralSystem: "Sistema de Indicação",
+    referralSystemDesc: "Ganhe indicando amigos",
+    fastWithdrawals: "Saques Rápidos",
+    fastWithdrawalsDesc: "Retire rapidamente",
+    poweredBy: "Desenvolvido Por",
+    welcomeTitle: "⚡ Bem-vindo ao StormCoin! ⚡",
+    welcomeSubtitle: "Ganhe, jogue e vença com nossos jogos emocionantes!",
+    plinko: "Plinko",
+    plinkoDesc: "Solte & Ganhe",
+    crash: "Crash",
+    crashDesc: "Voe Alto",
+    roulette: "Roleta",
+    rouletteDesc: "Gire Agora",
+    feature1: "Toque para ganhar moedas grátis",
+    feature2: "Jogos emocionantes 24/7",
+    feature3: "Convide amigos e ganhe bônus",
+    feature4: "Saques rápidos e seguros",
+    playNow: "Jogue Agora no Bot!",
+    home: "Início",
+    income: "Renda",
+    earn: "Ganhar",
+    game: "Jogo",
+    friends: "Amigos",
+    energy: "Energia",
+    noEnergy: "Sem energia! Use Impulso para recarregar!",
+    energyRestored: "Energia totalmente restaurada! Continue tocando!",
+    openingBot: "Abrindo Bot do Telegram...",
+  },
+  de: {
+    balance: "Guthaben",
+    perHour: "pro Stunde",
+    perTap: "pro Tipp",
+    boost: "Boost",
+    cooldown: "Abklingzeit...",
+    nextLevel: "Zum nächsten Level",
+    level: "Level",
+    coinsTo: "Münzen zum nächsten",
+    aboutUs: "Über Uns",
+    aboutDescription:
+      "StormCoin ist eine innovative Tap-to-Earn- und Gaming-Plattform, die mit Telegram integriert ist. Verdiene Münzen durch Tippen, spiele unsere aufregenden Spiele und baue dein Krypto-Imperium auf!",
+    tapEarn: "Tippen & Verdienen",
+    tapEarnDesc: "Verdiene einfach durch Tippen",
+    casinoGames: "Casino Spiele",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Empfehlungssystem",
+    referralSystemDesc: "Verdiene durch Freunde einladen",
+    fastWithdrawals: "Schnelle Auszahlungen",
+    fastWithdrawalsDesc: "Schnell abheben",
+    poweredBy: "Angetrieben Von",
+    welcomeTitle: "⚡ Willkommen bei StormCoin! ⚡",
+    welcomeSubtitle:
+      "Verdiene, spiele und gewinne mit unseren aufregenden Spielen!",
+    plinko: "Plinko",
+    plinkoDesc: "Fallen & Gewinnen",
+    crash: "Crash",
+    crashDesc: "Hoch Fliegen",
+    roulette: "Roulette",
+    rouletteDesc: "Jetzt Drehen",
+    feature1: "Tippe, um kostenlose Münzen zu verdienen",
+    feature2: "Aufregende Spiele 24/7",
+    feature3: "Lade Freunde ein und verdiene Boni",
+    feature4: "Schnelle und sichere Auszahlungen",
+    playNow: "Jetzt im Bot Spielen!",
+    home: "Startseite",
+    income: "Einkommen",
+    earn: "Verdienen",
+    game: "Spiel",
+    friends: "Freunde",
+    energy: "Energie",
+    noEnergy: "Keine Energie mehr! Benutze Boost zum Aufladen!",
+    energyRestored: "Energie vollständig wiederhergestellt! Weiter tippen!",
+    openingBot: "Telegram Bot wird geöffnet...",
+  },
+  dk: {
+    balance: "Balance",
+    perHour: "per time",
+    perTap: "per tryk",
+    boost: "Boost",
+    cooldown: "Nedkøling...",
+    nextLevel: "Til næste niveau",
+    level: "Niveau",
+    coinsTo: "mønter til næste",
+    aboutUs: "Om Os",
+    aboutDescription:
+      "StormCoin er en innovativ tap-to-earn og gaming platform integreret med Telegram. Tjen mønter ved at trykke, spil vores spændende spil og byg dit krypto-imperium!",
+    tapEarn: "Tryk & Tjen",
+    tapEarnDesc: "Tjen ved blot at trykke",
+    casinoGames: "Casino Spil",
+    casinoGamesDesc: "Plinko, Crash, Roulette",
+    referralSystem: "Henvisningssystem",
+    referralSystemDesc: "Tjen ved at invitere venner",
+    fastWithdrawals: "Hurtige Udbetalinger",
+    fastWithdrawalsDesc: "Hæv hurtigt",
+    poweredBy: "Drevet Af",
+    welcomeTitle: "⚡ Velkommen til StormCoin! ⚡",
+    welcomeSubtitle: "Tjen, spil og vind med vores spændende spil!",
+    plinko: "Plinko",
+    plinkoDesc: "Slip & Vind",
+    crash: "Crash",
+    crashDesc: "Flyv Højt",
+    roulette: "Roulette",
+    rouletteDesc: "Spin Nu",
+    feature1: "Tryk for at tjene gratis mønter",
+    feature2: "Spændende spil 24/7",
+    feature3: "Inviter venner og tjen bonusser",
+    feature4: "Hurtige og sikre udbetalinger",
+    playNow: "Spil Nu i Bot!",
+    home: "Hjem",
+    income: "Indkomst",
+    earn: "Tjen",
+    game: "Spil",
+    friends: "Venner",
+    energy: "Energi",
+    noEnergy: "Ingen energi tilbage! Brug Boost til at genopfylde!",
+    energyRestored: "Energi fuldt genoprettet! Fortsæt med at trykke!",
+    openingBot: "Åbner Telegram Bot...",
+  },
+};
+
 // Toast Component
 const Toast = ({
   message,
@@ -76,6 +478,99 @@ const CoinTurbo = ({ size = 32, className = "" }) => (
     className={`object-contain ${className}`}
   />
 );
+
+// Language flags and names
+const languageData: Record<Language, { flag: string; name: string }> = {
+  "en-ca": { flag: "🇨🇦", name: "English (CA)" },
+  en: { flag: "🇺🇸", name: "English (US)" },
+  es: { flag: "🇪🇸", name: "Español" },
+  fr: { flag: "🇫🇷", name: "Français" },
+  it: { flag: "🇮🇹", name: "Italiano" },
+  pt: { flag: "🇵🇹", name: "Português" },
+  de: { flag: "🇩🇪", name: "Deutsch" },
+  dk: { flag: "🇩🇰", name: "Dansk" },
+};
+
+// Header Component with Language Selector
+const Header = ({
+  currentLanguage,
+  onLanguageChange,
+}: {
+  currentLanguage: Language;
+  onLanguageChange: (lang: Language) => void;
+}) => {
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+
+  return (
+    <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-gray-700/50">
+      <div className="flex items-center justify-between px-5 py-3">
+        {/* Logo and Title */}
+        <div className="flex items-center gap-2">
+          <CoinTurbo size={32} className="animate-pulse" />
+          <h1 className="text-xl font-bold bg-linear-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
+            StormCoin
+          </h1>
+        </div>
+
+        {/* Language Selector */}
+        <div className="relative">
+          <button
+            onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+            className="flex items-center gap-2 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-blue-500/50 rounded-xl px-3 py-2 transition-all duration-300"
+          >
+            <span className="text-2xl">
+              {languageData[currentLanguage].flag}
+            </span>
+            <span className="text-sm font-medium text-gray-300 hidden sm:block">
+              {languageData[currentLanguage].name}
+            </span>
+            <svg
+              className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
+                showLanguageMenu ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Language Dropdown Menu */}
+          {showLanguageMenu && (
+            <div className="absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-xl border border-gray-700/50 rounded-2xl shadow-2xl overflow-hidden animate-dropdownSlide">
+              {(Object.keys(languageData) as Language[]).map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => {
+                    onLanguageChange(lang);
+                    setShowLanguageMenu(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-600/20 transition-all duration-200 ${
+                    currentLanguage === lang
+                      ? "bg-blue-600/30 text-blue-400"
+                      : "text-gray-300"
+                  }`}
+                >
+                  <span className="text-2xl">{languageData[lang].flag}</span>
+                  <span className="font-medium">{languageData[lang].name}</span>
+                  {currentLanguage === lang && (
+                    <span className="ml-auto text-blue-400">✓</span>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Loading Screen Component
 const LoadingScreen = ({
@@ -293,7 +788,11 @@ export default function Home() {
   const [boostCooldown, setBoostCooldown] = useState(false);
   const [showLightningVFX, setShowLightningVFX] = useState(false);
   const [ambientLightning, setAmbientLightning] = useState<number[]>([]);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>("en-ca");
   const tapTimestamps = useRef<number[]>([]);
+
+  // Get current translations
+  const t = translations[currentLanguage];
 
   // Removed ambient lightning effect to improve performance
 
@@ -301,16 +800,19 @@ export default function Home() {
   useEffect(() => {
     const savedBalance = localStorage.getItem("stormcoin_balance");
     const savedEnergy = localStorage.getItem("stormcoin_energy");
+    const savedLanguage = localStorage.getItem("stormcoin_language");
 
     if (savedBalance) setCurrentBalance(parseInt(savedBalance));
     if (savedEnergy) setEnergy(parseInt(savedEnergy));
+    if (savedLanguage) setCurrentLanguage(savedLanguage as Language);
   }, []);
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("stormcoin_balance", currentBalance.toString());
     localStorage.setItem("stormcoin_energy", energy.toString());
-  }, [currentBalance, energy]);
+    localStorage.setItem("stormcoin_language", currentLanguage);
+  }, [currentBalance, energy, currentLanguage]);
 
   // Reset energy to 500 on page reload (after initial load)
   useEffect(() => {
@@ -337,7 +839,7 @@ export default function Home() {
       setActiveTab(tabId);
     } else {
       // Show notification before navigating
-      showToast("Opening Telegram Bot...", "info");
+      showToast(t.openingBot, "info");
       // Navigate to Telegram bot for other tabs
       const botUsername = "TheStormCoin_bot"; // TODO: Replace with your actual bot username
       setTimeout(() => {
@@ -348,7 +850,7 @@ export default function Home() {
 
   const handleTapCoin = () => {
     if (energy <= 0) {
-      showToast("No energy left! Use Boost to refill!", "error");
+      showToast(t.noEnergy, "error");
       return;
     }
 
@@ -378,13 +880,13 @@ export default function Home() {
 
   const handleBoost = () => {
     if (boostCooldown) {
-      showToast("Boost is on cooldown! Wait a moment.", "info");
+      showToast(t.cooldown, "info");
       return;
     }
 
     // Refill energy to 500
     setEnergy(500);
-    showToast("Energy fully restored! Keep tapping!", "success");
+    showToast(t.energyRestored, "success");
 
     // Set cooldown for 3 seconds
     setBoostCooldown(true);
@@ -403,7 +905,7 @@ export default function Home() {
   const tabItems = [
     {
       id: "Home",
-      label: "Home",
+      label: t.home,
       icon: (
         <svg
           width="24"
@@ -424,7 +926,7 @@ export default function Home() {
     },
     {
       id: "Entrate",
-      label: "Entrate",
+      label: t.income,
       icon: (
         <svg
           width="24"
@@ -464,7 +966,7 @@ export default function Home() {
     },
     {
       id: "Guadagna",
-      label: "Guadagna",
+      label: t.earn,
       icon: (
         <svg
           width="24"
@@ -499,7 +1001,7 @@ export default function Home() {
     },
     {
       id: "Gioco",
-      label: "Gioco",
+      label: t.game,
       icon: (
         <svg
           width="24"
@@ -538,7 +1040,7 @@ export default function Home() {
     },
     {
       id: "Amici",
-      label: "Amici",
+      label: t.friends,
       icon: (
         <svg
           width="24"
@@ -662,6 +1164,12 @@ export default function Home() {
         )}
 
         <div className="flex flex-col h-full bg-black/30 backdrop-blur-sm border-l border-r border-gray-800/30">
+          {/* Header with Language Selector */}
+          <Header
+            currentLanguage={currentLanguage}
+            onLanguageChange={setCurrentLanguage}
+          />
+
           {/* Main Content */}
           <div className="flex-1 px-5 pb-24 overflow-y-auto">
             <div
@@ -674,7 +1182,7 @@ export default function Home() {
               {/* Balance Section */}
               <div className="text-center mb-6 mt-8">
                 <div className="text-blue-400 text-lg font-medium mb-2">
-                  Saldo
+                  {t.balance}
                 </div>
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <span
@@ -688,11 +1196,13 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-center gap-6 text-gray-400">
                   <span>
-                    <span className="text-white font-semibold">0</span> all'ora
+                    <span className="text-white font-semibold">0</span>{" "}
+                    {t.perHour}
                   </span>
                   <span className="text-gray-600">|</span>
                   <span>
-                    <span className="text-white font-semibold">1</span> per tap
+                    <span className="text-white font-semibold">1</span>{" "}
+                    {t.perTap}
                   </span>
                 </div>
               </div>
@@ -842,7 +1352,7 @@ export default function Home() {
                     >
                       {energy} / 500
                     </span>
-                    <span className="text-xs text-gray-400">Energy</span>
+                    <span className="text-xs text-gray-400">{t.energy}</span>
                   </div>
                 </div>
                 <button
@@ -856,7 +1366,7 @@ export default function Home() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">🚀</span>
-                    <span>{boostCooldown ? "Cooldown..." : "Boost"}</span>
+                    <span>{boostCooldown ? t.cooldown : t.boost}</span>
                   </div>
                 </button>
               </div>
@@ -867,7 +1377,7 @@ export default function Home() {
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">🎯</span>
                     <span className="text-gray-300 font-medium">
-                      Al prossimo livello
+                      {t.nextLevel}
                     </span>
                   </div>
                   <span className="text-white font-bold text-lg">
@@ -883,8 +1393,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mt-2 text-xs text-gray-400 text-center">
-                  Level {Math.floor(currentBalance / 100) + 1} •{" "}
-                  {currentBalance % 100}/100 coins to next
+                  {t.level} {Math.floor(currentBalance / 100) + 1} •{" "}
+                  {currentBalance % 100}/100 {t.coinsTo}
                 </div>
               </div>
 
@@ -893,13 +1403,10 @@ export default function Home() {
                 <div className="bg-linear-to-br from-gray-800/40 via-gray-900/40 to-gray-800/40 backdrop-blur-md rounded-3xl p-6 border border-gray-700/30 shadow-2xl">
                   <div className="text-center mb-4">
                     <h2 className="text-2xl font-extrabold bg-linear-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent mb-3">
-                      Chi Siamo
+                      {t.aboutUs}
                     </h2>
                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                      StormCoin è una piattaforma innovativa di tap-to-earn e
-                      gaming integrata con Telegram. Guadagna monete toccando,
-                      gioca ai nostri giochi emozionanti e costruisci il tuo
-                      impero crypto!
+                      {t.aboutDescription}
                     </p>
                   </div>
 
@@ -909,10 +1416,10 @@ export default function Home() {
                     <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
                       <div className="text-3xl mb-2 text-center">⚡</div>
                       <div className="text-xs font-bold text-blue-400 text-center mb-1">
-                        Tap & Earn
+                        {t.tapEarn}
                       </div>
                       <div className="text-[10px] text-gray-400 text-center">
-                        Guadagna semplicemente toccando
+                        {t.tapEarnDesc}
                       </div>
                     </div>
 
@@ -920,10 +1427,10 @@ export default function Home() {
                     <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
                       <div className="text-3xl mb-2 text-center">🎰</div>
                       <div className="text-xs font-bold text-purple-400 text-center mb-1">
-                        Casino Games
+                        {t.casinoGames}
                       </div>
                       <div className="text-[10px] text-gray-400 text-center">
-                        Plinko, Crash, Roulette
+                        {t.casinoGamesDesc}
                       </div>
                     </div>
 
@@ -931,10 +1438,10 @@ export default function Home() {
                     <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300">
                       <div className="text-3xl mb-2 text-center">👥</div>
                       <div className="text-xs font-bold text-cyan-400 text-center mb-1">
-                        Referral System
+                        {t.referralSystem}
                       </div>
                       <div className="text-[10px] text-gray-400 text-center">
-                        Guadagna invitando amici
+                        {t.referralSystemDesc}
                       </div>
                     </div>
 
@@ -942,37 +1449,11 @@ export default function Home() {
                     <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-green-500/20 hover:border-green-500/40 transition-all duration-300">
                       <div className="text-3xl mb-2 text-center">💰</div>
                       <div className="text-xs font-bold text-green-400 text-center mb-1">
-                        Fast Withdrawals
+                        {t.fastWithdrawals}
                       </div>
                       <div className="text-[10px] text-gray-400 text-center">
-                        Preleva velocemente
+                        {t.fastWithdrawalsDesc}
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="bg-linear-to-r from-blue-600/10 to-purple-600/10 rounded-xl p-4 border border-blue-500/20">
-                    <div className="text-center mb-2">
-                      <span className="text-xs font-semibold text-blue-300">
-                        🚀 Powered By
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] text-gray-400">
-                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
-                        React
-                      </span>
-                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
-                        Telegram SDK
-                      </span>
-                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
-                        Socket.io
-                      </span>
-                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
-                        Zustand
-                      </span>
-                      <span className="bg-black/40 px-2 py-1 rounded-lg border border-gray-700/30">
-                        Framer Motion
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -983,11 +1464,9 @@ export default function Home() {
                 <div className="bg-linear-to-br from-blue-600/20 via-purple-600/20 to-cyan-600/20 backdrop-blur-md rounded-3xl p-6 border border-blue-500/30 shadow-2xl">
                   <div className="text-center mb-4">
                     <h2 className="text-3xl font-extrabold bg-linear-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent mb-2">
-                      ⚡ Benvenuto su StormCoin! ⚡
+                      {t.welcomeTitle}
                     </h2>
-                    <p className="text-gray-300 text-sm">
-                      Guadagna, gioca e vinci con i nostri giochi emozionanti!
-                    </p>
+                    <p className="text-gray-300 text-sm">{t.welcomeSubtitle}</p>
                   </div>
 
                   {/* Games Grid */}
@@ -997,10 +1476,10 @@ export default function Home() {
                       <div className="text-center">
                         <div className="text-3xl mb-2">🎯</div>
                         <div className="text-xs font-bold text-blue-400">
-                          Plinko
+                          {t.plinko}
                         </div>
                         <div className="text-[10px] text-gray-400 mt-1">
-                          Drop & Win
+                          {t.plinkoDesc}
                         </div>
                       </div>
                     </div>
@@ -1010,10 +1489,10 @@ export default function Home() {
                       <div className="text-center">
                         <div className="text-3xl mb-2">🚀</div>
                         <div className="text-xs font-bold text-purple-400">
-                          Crash
+                          {t.crash}
                         </div>
                         <div className="text-[10px] text-gray-400 mt-1">
-                          Fly High
+                          {t.crashDesc}
                         </div>
                       </div>
                     </div>
@@ -1023,10 +1502,10 @@ export default function Home() {
                       <div className="text-center">
                         <div className="text-3xl mb-2">🎰</div>
                         <div className="text-xs font-bold text-red-400">
-                          Roulette
+                          {t.roulette}
                         </div>
                         <div className="text-[10px] text-gray-400 mt-1">
-                          Spin Now
+                          {t.rouletteDesc}
                         </div>
                       </div>
                     </div>
@@ -1036,27 +1515,19 @@ export default function Home() {
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2 text-sm">
                       <span className="text-green-400">✓</span>
-                      <span className="text-gray-300">
-                        Tap per guadagnare coins gratis
-                      </span>
+                      <span className="text-gray-300">{t.feature1}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <span className="text-green-400">✓</span>
-                      <span className="text-gray-300">
-                        Giochi emozionanti 24/7
-                      </span>
+                      <span className="text-gray-300">{t.feature2}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <span className="text-green-400">✓</span>
-                      <span className="text-gray-300">
-                        Invita amici e guadagna bonus
-                      </span>
+                      <span className="text-gray-300">{t.feature3}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <span className="text-green-400">✓</span>
-                      <span className="text-gray-300">
-                        Prelievi veloci e sicuri
-                      </span>
+                      <span className="text-gray-300">{t.feature4}</span>
                     </div>
                   </div>
 
@@ -1067,7 +1538,7 @@ export default function Home() {
                   >
                     <div className="flex items-center justify-center gap-2">
                       <span className="text-2xl">🎮</span>
-                      <span>Gioca Ora nel Bot!</span>
+                      <span>{t.playNow}</span>
                     </div>
                   </button>
                 </div>
