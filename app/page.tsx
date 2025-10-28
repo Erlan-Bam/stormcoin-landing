@@ -22,10 +22,26 @@ export default function Home() {
               />
             </g>
             <defs>
-              <filter id="filter0_f" x="-478.386" y="0.632324" width="702.717" height="776.643" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <filter
+                id="filter0_f"
+                x="-478.386"
+                y="0.632324"
+                width="702.717"
+                height="776.643"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
                 <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="60" result="effect1_foregroundBlur" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="60"
+                  result="effect1_foregroundBlur"
+                />
               </filter>
             </defs>
           </svg>
@@ -39,10 +55,26 @@ export default function Home() {
               />
             </g>
             <defs>
-              <filter id="filter1_f" x="-99.208" y="-435.564" width="1016.74" height="1099.36" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <filter
+                id="filter1_f"
+                x="-99.208"
+                y="-435.564"
+                width="1016.74"
+                height="1099.36"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
                 <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="60" result="effect1_foregroundBlur" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="60"
+                  result="effect1_foregroundBlur"
+                />
               </filter>
             </defs>
           </svg>
@@ -56,7 +88,9 @@ export default function Home() {
           <div className="contains px-[10px] overflow-y-auto overflow-x-hidden flex-1 pt-5 pb-24">
             <div
               className={`transition-all duration-1000 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
               {/* Hero Section */}
@@ -74,18 +108,30 @@ export default function Home() {
 
                 {/* Balance Display */}
                 <div className="mb-8">
-                  <div className="text-sm text-blue-400 mb-2 font-medium">Balance</div>
+                  <div className="text-sm text-blue-400 mb-2 font-medium">
+                    Balance
+                  </div>
                   <div className="flex items-center justify-center gap-2 mb-3">
                     <span className="text-6xl font-bold">500</span>
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-blue-500">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      className="text-blue-500"
+                    >
                       <path d="M16 4L22 16H10L16 4Z" fill="currentColor" />
                       <path d="M16 28L10 16H22L16 28Z" fill="currentColor" />
                     </svg>
                   </div>
                   <div className="flex justify-center gap-6 text-sm text-gray-400">
-                    <span><span className="font-bold text-white">0</span> per hour</span>
+                    <span>
+                      <span className="font-bold text-white">0</span> per hour
+                    </span>
                     <span className="text-gray-600">|</span>
-                    <span><span className="font-bold text-white">1</span> per tap</span>
+                    <span>
+                      <span className="font-bold text-white">1</span> per tap
+                    </span>
                   </div>
                 </div>
 
@@ -95,9 +141,22 @@ export default function Home() {
                     <div className="absolute inset-0 rounded-full bg-blue-600/30 blur-3xl animate-pulse"></div>
                     <div className="relative w-[192px] h-[192px] rounded-full bg-gradient-to-br from-[#2d3250] via-[#1e2139] to-[#0f1120] border-[8px] border-blue-600/20 flex items-center justify-center shadow-2xl cursor-pointer active:scale-95 transition-transform">
                       <div className="w-[128px] h-[128px] rounded-full bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center shadow-xl">
-                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                          <path d="M32 8L44 32H20L32 8Z" fill="white" fillOpacity="0.9" />
-                          <path d="M32 56L20 32H44L32 56Z" fill="white" fillOpacity="0.9" />
+                        <svg
+                          width="64"
+                          height="64"
+                          viewBox="0 0 64 64"
+                          fill="none"
+                        >
+                          <path
+                            d="M32 8L44 32H20L32 8Z"
+                            fill="white"
+                            fillOpacity="0.9"
+                          />
+                          <path
+                            d="M32 56L20 32H44L32 56Z"
+                            fill="white"
+                            fillOpacity="0.9"
+                          />
                         </svg>
                       </div>
                     </div>
@@ -106,62 +165,74 @@ export default function Home() {
 
                 {/* CTA */}
                 <h2 className="text-[28px] font-extrabold leading-tight mb-4">
-                  Start Playing<br />
+                  Start Playing
+                  <br />
                   <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
                     & Earning Today
                   </span>
                 </h2>
                 <p className="text-gray-400 text-[15px] leading-relaxed mb-8 max-w-[340px]">
-                  Tap to earn coins, complete tasks, and compete with friends in this exciting Telegram game!
+                  Tap to earn coins, complete tasks, and compete with friends in
+                  this exciting Telegram game!
                 </p>
 
                 {/* Launch Button */}
                 <button className="w-full py-[18px] bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl font-bold text-[17px] shadow-2xl shadow-blue-600/30 hover:shadow-blue-600/50 transition-all duration-300 hover:scale-[1.02] active:scale-95 mb-3">
                   🚀 Launch Mini App
                 </button>
-                <p className="text-xs text-gray-500">Available on Telegram • No download required</p>
+                <p className="text-xs text-gray-500">
+                  Available on Telegram • No download required
+                </p>
               </div>
 
               {/* Features Section */}
               <div className="mb-12">
-                <h3 className="text-[24px] font-bold text-center mb-8">How It Works</h3>
+                <h3 className="text-[24px] font-bold text-center mb-8">
+                  How It Works
+                </h3>
                 <div className="space-y-3">
                   {[
                     {
                       icon: "⚡",
                       title: "Tap to Earn",
                       desc: "Tap the big coin button to earn StormCoins instantly. The more you tap, the more you earn!",
-                      color: "from-blue-600 to-blue-500"
+                      color: "from-blue-600 to-blue-500",
                     },
                     {
                       icon: "🎯",
                       title: "Complete Tasks",
                       desc: "Finish daily tasks and challenges to earn bonus coins and unlock special rewards.",
-                      color: "from-purple-600 to-purple-500"
+                      color: "from-purple-600 to-purple-500",
                     },
                     {
                       icon: "🎮",
                       title: "Play Mini Games",
                       desc: "Try Plinko, Roulette, and Crash games. Win big and multiply your earnings!",
-                      color: "from-cyan-600 to-cyan-500"
+                      color: "from-cyan-600 to-cyan-500",
                     },
                     {
                       icon: "👥",
                       title: "Invite Friends",
                       desc: "Get 10% of your friends' earnings forever. Build your team and earn passive income!",
-                      color: "from-pink-600 to-pink-500"
-                    }
+                      color: "from-pink-600 to-pink-500",
+                    },
                   ].map((feature, idx) => (
                     <div
                       key={idx}
                       className="flex items-start gap-[14px] bg-[#181820]/50 backdrop-blur-sm rounded-xl p-[14px] border border-gray-800/50"
                     >
-                      <div className={`shrink-0 w-[48px] h-[48px] bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center shadow-lg text-[24px]`}>
+                      <div
+                        className={`shrink-0 w-[48px] h-[48px] bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center shadow-lg text-[24px]`}
+                      >
                         {feature.icon}
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-[17px] mb-1">{feature.title}</h4>
-                        <p className="text-[13px] text-gray-400 leading-relaxed">{feature.desc}</p>
+                        <h4 className="font-bold text-[17px] mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-[13px] text-gray-400 leading-relaxed">
+                          {feature.desc}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -174,11 +245,18 @@ export default function Home() {
                   {[
                     { value: "500K+", label: "Players" },
                     { value: "1M+", label: "Taps Daily" },
-                    { value: "$100K", label: "Rewards" }
+                    { value: "$100K", label: "Rewards" },
                   ].map((stat, idx) => (
-                    <div key={idx} className="bg-[#181820]/50 backdrop-blur-sm rounded-xl p-[14px] border border-gray-800/50 text-center">
-                      <div className="text-[28px] font-bold text-blue-500 mb-1">{stat.value}</div>
-                      <div className="text-[11px] text-gray-400">{stat.label}</div>
+                    <div
+                      key={idx}
+                      className="bg-[#181820]/50 backdrop-blur-sm rounded-xl p-[14px] border border-gray-800/50 text-center"
+                    >
+                      <div className="text-[28px] font-bold text-blue-500 mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-[11px] text-gray-400">
+                        {stat.label}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -186,8 +264,12 @@ export default function Home() {
 
               {/* Final CTA */}
               <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-sm rounded-[18px] p-8 border border-blue-500/20 text-center mb-8">
-                <h3 className="text-[24px] font-extrabold mb-3">Ready to Storm?</h3>
-                <p className="text-gray-300 mb-6 text-[14px]">Join thousands of players earning coins every day</p>
+                <h3 className="text-[24px] font-extrabold mb-3">
+                  Ready to Storm?
+                </h3>
+                <p className="text-gray-300 mb-6 text-[14px]">
+                  Join thousands of players earning coins every day
+                </p>
                 <button className="w-full py-[18px] bg-white text-blue-600 rounded-2xl font-bold text-[17px] hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-xl mb-3">
                   Play Now in Telegram
                 </button>
