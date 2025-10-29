@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Lottie from "lottie-react";
-import lightningVFX from "@/public/lightning-vfx.json";
+// import Lottie from "lottie-react";
+// import lightningVFX from "@/public/lightning-vfx.json";
 
 // Types
 type ToastType = "error" | "success" | "info";
@@ -56,6 +56,9 @@ interface Translations {
   noEnergy: string;
   energyRestored: string;
   openingBot: string;
+  boostActivated: string;
+  boostEnded: string;
+  noBoosts: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -99,9 +102,12 @@ const translations: Record<Language, Translations> = {
     game: "Game",
     friends: "Friends",
     energy: "Energy",
-    noEnergy: "No energy left! Use Boost to refill!",
+    noEnergy: "No energy left! Wait for restore or use premium refill!",
     energyRestored: "Energy fully restored! Keep tapping!",
     openingBot: "Opening Telegram Bot...",
+    boostActivated: "Boost activated! 3x coins for 30 seconds!",
+    boostEnded: "Boost ended! Back to normal tapping",
+    noBoosts: "No boosts left!",
   },
   "en-ca": {
     balance: "Balance",
@@ -143,9 +149,12 @@ const translations: Record<Language, Translations> = {
     game: "Game",
     friends: "Friends",
     energy: "Energy",
-    noEnergy: "No energy left! Use Boost to refill!",
+    noEnergy: "No energy left! Wait for restore or use premium refill!",
     energyRestored: "Energy fully restored! Keep tapping!",
     openingBot: "Opening Telegram Bot...",
+    boostActivated: "Boost activated! 3x coins for 30 seconds!",
+    boostEnded: "Boost ended! Back to normal tapping",
+    noBoosts: "No boosts left!",
   },
   es: {
     balance: "Saldo",
@@ -187,9 +196,12 @@ const translations: Record<Language, Translations> = {
     game: "Juego",
     friends: "Amigos",
     energy: "Energía",
-    noEnergy: "¡Sin energía! ¡Usa Impulso para recargar!",
+    noEnergy: "¡Sin energía! ¡Espera la restauración o usa recarga premium!",
     energyRestored: "¡Energía completamente restaurada! ¡Sigue tocando!",
     openingBot: "Abriendo Bot de Telegram...",
+    boostActivated: "¡Impulso activado! ¡3x monedas por 30 segundos!",
+    boostEnded: "¡Impulso terminado! Vuelve al toque normal",
+    noBoosts: "¡No quedan impulsos!",
   },
   fr: {
     balance: "Solde",
@@ -231,9 +243,13 @@ const translations: Record<Language, Translations> = {
     game: "Jeu",
     friends: "Amis",
     energy: "Énergie",
-    noEnergy: "Plus d'énergie! Utilisez Boost pour recharger!",
+    noEnergy:
+      "Plus d'énergie! Attendez la restauration ou utilisez la recharge premium!",
     energyRestored: "Énergie complètement restaurée! Continuez à taper!",
     openingBot: "Ouverture du Bot Telegram...",
+    boostActivated: "Boost activé! 3x pièces pendant 30 secondes!",
+    boostEnded: "Boost terminé! Retour au tap normal",
+    noBoosts: "Plus de boosts!",
   },
   it: {
     balance: "Saldo",
@@ -275,9 +291,13 @@ const translations: Record<Language, Translations> = {
     game: "Gioco",
     friends: "Amici",
     energy: "Energia",
-    noEnergy: "Nessuna energia! Usa Boost per ricaricare!",
+    noEnergy:
+      "Nessuna energia! Aspetta il ripristino o usa la ricarica premium!",
     energyRestored: "Energia completamente ripristinata! Continua a tappare!",
     openingBot: "Apertura Bot Telegram...",
+    boostActivated: "Boost attivato! 3x monete per 30 secondi!",
+    boostEnded: "Boost finito! Torna al tap normale",
+    noBoosts: "Nessun boost rimasto!",
   },
   pt: {
     balance: "Saldo",
@@ -319,9 +339,12 @@ const translations: Record<Language, Translations> = {
     game: "Jogo",
     friends: "Amigos",
     energy: "Energia",
-    noEnergy: "Sem energia! Use Impulso para recarregar!",
+    noEnergy: "Sem energia! Aguarde a restauração ou use recarga premium!",
     energyRestored: "Energia totalmente restaurada! Continue tocando!",
     openingBot: "Abrindo Bot do Telegram...",
+    boostActivated: "Boost ativado! 3x moedas por 30 segundos!",
+    boostEnded: "Boost terminou! Volta ao toque normal",
+    noBoosts: "Sem boosts restantes!",
   },
   de: {
     balance: "Guthaben",
@@ -364,9 +387,13 @@ const translations: Record<Language, Translations> = {
     game: "Spiel",
     friends: "Freunde",
     energy: "Energie",
-    noEnergy: "Keine Energie mehr! Benutze Boost zum Aufladen!",
+    noEnergy:
+      "Keine Energie mehr! Warte auf Wiederherstellung oder nutze Premium-Aufladung!",
     energyRestored: "Energie vollständig wiederhergestellt! Weiter tippen!",
     openingBot: "Telegram Bot wird geöffnet...",
+    boostActivated: "Boost aktiviert! 3x Münzen für 30 Sekunden!",
+    boostEnded: "Boost beendet! Zurück zum normalen Tippen",
+    noBoosts: "Keine Boosts übrig!",
   },
   dk: {
     balance: "Balance",
@@ -408,9 +435,13 @@ const translations: Record<Language, Translations> = {
     game: "Spil",
     friends: "Venner",
     energy: "Energi",
-    noEnergy: "Ingen energi tilbage! Brug Boost til at genopfylde!",
+    noEnergy:
+      "Ingen energi tilbage! Vent på genoprettelse eller brug premium genopladning!",
     energyRestored: "Energi fuldt genoprettet! Fortsæt med at trykke!",
     openingBot: "Åbner Telegram Bot...",
+    boostActivated: "Boost aktiveret! 3x mønter i 30 sekunder!",
+    boostEnded: "Boost slut! Tilbage til normalt tryk",
+    noBoosts: "Ingen boosts tilbage!",
   },
 };
 
@@ -792,13 +823,16 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
   const [currentBalance, setCurrentBalance] = useState(7);
-  const [energy, setEnergy] = useState(500);
+  const [energy, setEnergy] = useState(100);
   const [toast, setToast] = useState<ToastData | null>(null);
   const [tapAnimation, setTapAnimation] = useState(false);
   const [boostCooldown, setBoostCooldown] = useState(false);
   const [showLightningVFX, setShowLightningVFX] = useState(false);
   const [ambientLightning, setAmbientLightning] = useState<number[]>([]);
   const [currentLanguage, setCurrentLanguage] = useState<Language>("en-ca");
+  const [tapMultiplier, setTapMultiplier] = useState(1);
+  const [boostTimeLeft, setBoostTimeLeft] = useState(0);
+  const [boostsLeft, setBoostsLeft] = useState(3);
   const tapTimestamps = useRef<number[]>([]);
 
   // Get current translations
@@ -811,10 +845,12 @@ export default function Home() {
     const savedBalance = localStorage.getItem("stormcoin_balance");
     const savedEnergy = localStorage.getItem("stormcoin_energy");
     const savedLanguage = localStorage.getItem("stormcoin_language");
+    const savedBoosts = localStorage.getItem("stormcoin_boosts");
 
     if (savedBalance) setCurrentBalance(parseInt(savedBalance));
     if (savedEnergy) setEnergy(parseInt(savedEnergy));
     if (savedLanguage) setCurrentLanguage(savedLanguage as Language);
+    if (savedBoosts) setBoostsLeft(parseInt(savedBoosts));
   }, []);
 
   // Save state to localStorage whenever it changes
@@ -822,16 +858,30 @@ export default function Home() {
     localStorage.setItem("stormcoin_balance", currentBalance.toString());
     localStorage.setItem("stormcoin_energy", energy.toString());
     localStorage.setItem("stormcoin_language", currentLanguage);
-  }, [currentBalance, energy, currentLanguage]);
+    localStorage.setItem("stormcoin_boosts", boostsLeft.toString());
+  }, [currentBalance, energy, currentLanguage, boostsLeft]);
 
-  // Reset energy to 500 on page reload (after initial load)
+  // Reset energy to 100 on page reload (after initial load)
   useEffect(() => {
     const hasReloaded = sessionStorage.getItem("stormcoin_reloaded");
     if (!hasReloaded) {
       sessionStorage.setItem("stormcoin_reloaded", "true");
-      setEnergy(500);
+      setEnergy(100);
     }
   }, []);
+
+  // Boost timer effect
+  useEffect(() => {
+    if (boostTimeLeft > 0) {
+      const timer = setTimeout(() => {
+        setBoostTimeLeft((prev) => prev - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (boostTimeLeft === 0 && tapMultiplier > 1) {
+      setTapMultiplier(1);
+      showToast(t.boostEnded, "info");
+    }
+  }, [boostTimeLeft, tapMultiplier]);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -881,22 +931,24 @@ export default function Home() {
 
     // Decrease energy by 1
     setEnergy((prev) => Math.max(0, prev - 1));
-    // Increase balance by 1
-    setCurrentBalance((prev) => prev + 1);
+    // Increase balance by tap multiplier (1 or more during boost)
+    setCurrentBalance((prev) => prev + tapMultiplier);
     // Trigger tap animation
     setTapAnimation(true);
     setTimeout(() => setTapAnimation(false), 200);
   };
 
   const handleBoost = () => {
-    if (boostCooldown) {
-      showToast(t.cooldown, "info");
+    if (boostCooldown || boostsLeft <= 0) {
+      showToast(boostsLeft <= 0 ? t.noBoosts : t.cooldown, "error");
       return;
     }
 
-    // Refill energy to 500
-    setEnergy(500);
-    showToast(t.energyRestored, "success");
+    // Activate boost multiplier for 30 seconds
+    setTapMultiplier(3);
+    setBoostTimeLeft(30);
+    setBoostsLeft((prev) => prev - 1);
+    showToast(t.boostActivated, "success");
 
     // Set cooldown for 3 seconds
     setBoostCooldown(true);
@@ -905,7 +957,13 @@ export default function Home() {
     }, 3000);
   };
 
-  const energyPercentage = (energy / 500) * 100;
+  const handleEnergyRefill = () => {
+    // Separate function for energy refill (can be added later as premium feature)
+    setEnergy(100);
+    showToast(t.energyRestored, "success");
+  };
+
+  const energyPercentage = (energy / 100) * 100;
   const levelProgress = ((currentBalance % 100) / 100) * 100; // Simple level system
 
   if (isLoading) {
@@ -1211,18 +1269,31 @@ export default function Home() {
                   </span>
                   <span className="text-gray-600">|</span>
                   <span>
-                    <span className="text-white font-semibold">1</span>{" "}
+                    <span
+                      className={`font-semibold ${
+                        tapMultiplier > 1
+                          ? "text-yellow-400 animate-pulse"
+                          : "text-white"
+                      }`}
+                    >
+                      {tapMultiplier}
+                    </span>{" "}
                     {t.perTap}
+                    {tapMultiplier > 1 && (
+                      <span className="ml-1 text-yellow-400 text-xs">
+                        ({boostTimeLeft}s)
+                      </span>
+                    )}
                   </span>
                 </div>
               </div>
 
               {/* Tapping Coin Section */}
               <div className="flex justify-center mb-8 relative">
-                {/* Optimized Lightning VFX - Only 3 animations for performance */}
+                {/* Lightning VFX using CSS animations */}
                 {showLightningVFX && (
                   <>
-                    {/* Center Main Lightning - Reduced Size */}
+                    {/* Center Main Lightning Effect */}
                     <div
                       className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center"
                       style={{
@@ -1231,12 +1302,12 @@ export default function Home() {
                         animation: "fadeInOut 2.5s ease-in-out",
                       }}
                     >
-                      <div className="w-[300px] h-[300px]">
-                        <Lottie
-                          animationData={lightningVFX}
-                          loop={false}
-                          autoplay={true}
-                        />
+                      <div className="w-[300px] h-[300px] relative">
+                        <div className="absolute inset-0 bg-linear-to-r from-blue-400 via-yellow-300 to-blue-400 rounded-full blur-3xl animate-pulse opacity-80"></div>
+                        <div className="absolute inset-4 bg-linear-to-r from-cyan-300 via-white to-cyan-300 rounded-full blur-2xl animate-ping opacity-60"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl animate-bounce">
+                          ⚡
+                        </div>
                       </div>
                     </div>
 
@@ -1250,12 +1321,11 @@ export default function Home() {
                         animation: "fadeInOut 2s ease-in-out 0.15s",
                       }}
                     >
-                      <div className="w-[140px] h-[140px] opacity-50">
-                        <Lottie
-                          animationData={lightningVFX}
-                          loop={false}
-                          autoplay={true}
-                        />
+                      <div className="w-[140px] h-[140px] opacity-50 relative">
+                        <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-blue-400 rounded-full blur-2xl animate-pulse"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl animate-spin">
+                          ⚡
+                        </div>
                       </div>
                     </div>
 
@@ -1269,12 +1339,11 @@ export default function Home() {
                         animation: "fadeInOut 2.2s ease-in-out 0.1s",
                       }}
                     >
-                      <div className="w-[150px] h-[150px] opacity-45">
-                        <Lottie
-                          animationData={lightningVFX}
-                          loop={false}
-                          autoplay={true}
-                        />
+                      <div className="w-[150px] h-[150px] opacity-45 relative">
+                        <div className="absolute inset-0 bg-linear-to-r from-yellow-400 to-orange-400 rounded-full blur-2xl animate-ping"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl animate-pulse">
+                          ⚡
+                        </div>
                       </div>
                     </div>
                   </>
@@ -1286,6 +1355,8 @@ export default function Home() {
                   className={`relative w-64 h-64 rounded-full bg-linear-to-b from-[#2d3250] via-[#1e213a] to-[#141629] border-8 flex items-center justify-center shadow-2xl transition-all duration-200 ${
                     energy <= 0
                       ? "border-red-500/50 opacity-50 cursor-not-allowed"
+                      : tapMultiplier > 1
+                      ? "border-yellow-400/50 shadow-yellow-400/30 active:scale-95 hover:border-yellow-400/70"
                       : "border-blue-500/30 active:scale-95 hover:border-blue-500/50"
                   } ${tapAnimation ? "scale-95" : ""}`}
                 >
@@ -1304,10 +1375,14 @@ export default function Home() {
                     </>
                   )}
                 </button>
-                {/* +1 floating animation */}
+                {/* +X floating animation */}
                 {tapAnimation && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl font-bold text-blue-400 animate-floatUp pointer-events-none">
-                    +1
+                  <div
+                    className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl font-bold animate-floatUp pointer-events-none ${
+                      tapMultiplier > 1 ? "text-yellow-400" : "text-blue-400"
+                    }`}
+                  >
+                    +{tapMultiplier}
                   </div>
                 )}
               </div>
@@ -1318,7 +1393,7 @@ export default function Home() {
                   <div className="relative w-8 h-8 flex items-center justify-center">
                     <svg
                       className={`w-8 h-8 transform -rotate-90 ${
-                        energy <= 100 ? "animate-pulse" : ""
+                        energy <= 20 ? "animate-pulse" : ""
                       }`}
                       viewBox="0 0 32 32"
                     >
@@ -1335,7 +1410,7 @@ export default function Home() {
                         cy="16"
                         r="14"
                         fill="none"
-                        stroke={energy <= 100 ? "#ef4444" : "#10b981"}
+                        stroke={energy <= 20 ? "#ef4444" : "#10b981"}
                         strokeWidth="3"
                         strokeDasharray={`${
                           (energyPercentage / 100) * 87.96
@@ -1347,7 +1422,7 @@ export default function Home() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span
                         className={`text-xs font-bold ${
-                          energy <= 100 ? "text-red-400" : "text-green-400"
+                          energy <= 20 ? "text-red-400" : "text-green-400"
                         }`}
                       >
                         ⚡
@@ -1357,28 +1432,36 @@ export default function Home() {
                   <div className="flex flex-col">
                     <span
                       className={`font-bold text-lg ${
-                        energy <= 100 ? "text-red-400" : "text-white"
+                        energy <= 20 ? "text-red-400" : "text-white"
                       }`}
                     >
-                      {energy} / 500
+                      {energy} / 100
                     </span>
                     <span className="text-xs text-gray-400">{t.energy}</span>
                   </div>
                 </div>
-                <button
-                  onClick={handleBoost}
-                  disabled={boostCooldown || energy === 500}
-                  className={`px-6 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
-                    boostCooldown || energy === 500
-                      ? "bg-gray-600 opacity-50 cursor-not-allowed"
-                      : "bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 active:scale-95 hover:shadow-xl hover:shadow-blue-500/50"
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">🚀</span>
-                    <span>{boostCooldown ? t.cooldown : t.boost}</span>
-                  </div>
-                </button>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={handleBoost}
+                    disabled={boostCooldown || boostsLeft <= 0}
+                    className={`px-6 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
+                      boostCooldown || boostsLeft <= 0
+                        ? "bg-gray-600 opacity-50 cursor-not-allowed"
+                        : tapMultiplier > 1
+                        ? "bg-linear-to-r from-yellow-600 to-orange-500 hover:from-yellow-500 hover:to-orange-400 active:scale-95 hover:shadow-xl hover:shadow-yellow-500/50"
+                        : "bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 active:scale-95 hover:shadow-xl hover:shadow-blue-500/50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">🚀</span>
+                      <span>
+                        {boostCooldown
+                          ? t.cooldown
+                          : `${t.boost} (${boostsLeft}/3)`}
+                      </span>
+                    </div>
+                  </button>
+                </div>
               </div>
 
               {/* Level Progress */}
