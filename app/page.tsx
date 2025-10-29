@@ -1472,7 +1472,9 @@ export default function Home() {
                         </svg>
                         <span className="text-sm">Refill</span>
                       </div>
-                      <span className="text-xs opacity-80">{refillsLeft}/3</span>
+                      <span className="text-xs opacity-80">
+                        {refillsLeft}/3
+                      </span>
                     </div>
                   </button>
 
