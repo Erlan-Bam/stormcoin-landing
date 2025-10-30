@@ -1,5 +1,6 @@
 import React from "react";
-import { BatteryLevelColor } from "../../Components/Indicator/items/BatteryItem";
+
+type BatteryLevelColor = "blue" | "bluelower" | "yellow" | "red" | "empty";
 
 interface BatteryIconProps {
   level: BatteryLevelColor;

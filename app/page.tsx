@@ -819,7 +819,7 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
   const [currentBalance, setCurrentBalance] = useState(0);
-  const [energy, setEnergy] = useState(500);
+  const [energy, setEnergy] = useState(100);
   const [toast, setToast] = useState<ToastData | null>(null);
   const [tapAnimation, setTapAnimation] = useState(false);
   const [boostCooldown, setBoostCooldown] = useState(false);
@@ -859,12 +859,12 @@ export default function Home() {
     localStorage.setItem("stormcoin_refills", refillsLeft.toString());
   }, [currentBalance, energy, currentLanguage, boostsLeft, refillsLeft]);
 
-  // Reset energy to 500 on page reload (after initial load)
+  // Reset energy to 100 on page reload (after initial load)
   useEffect(() => {
     const hasReloaded = sessionStorage.getItem("stormcoin_reloaded");
     if (!hasReloaded) {
       sessionStorage.setItem("stormcoin_reloaded", "true");
-      setEnergy(500);
+      setEnergy(100);
     }
   }, []);
 
@@ -959,18 +959,18 @@ export default function Home() {
       return;
     }
 
-    if (energy >= 500) {
+    if (energy >= 100) {
       showToast("Energy is already full!", "info");
       return;
     }
 
-    // Restore 100 energy (max 500)
-    setEnergy((prev) => Math.min(prev + 100, 500));
+    // Restore 100 energy (max 100)
+    setEnergy((prev) => Math.min(prev + 100, 100));
     setRefillsLeft((prev) => prev - 1);
     showToast(t.energyRestored, "success");
   };
 
-  const energyPercentage = (energy / 500) * 100;
+  const energyPercentage = (energy / 100) * 100;
   const levelProgress = ((currentBalance % 100) / 100) * 100; // Simple level system
 
   if (isLoading) {
@@ -1389,7 +1389,7 @@ export default function Home() {
                   <div className="relative w-8 h-8 flex items-center justify-center">
                     <svg
                       className={`w-8 h-8 transform -rotate-90 ${
-                        energy <= 100 ? "animate-pulse" : ""
+                        energy <= 20 ? "animate-pulse" : ""
                       }`}
                       viewBox="0 0 32 32"
                     >
@@ -1406,7 +1406,7 @@ export default function Home() {
                         cy="16"
                         r="14"
                         fill="none"
-                        stroke={energy <= 100 ? "#ef4444" : "#10b981"}
+                        stroke={energy <= 20 ? "#ef4444" : "#10b981"}
                         strokeWidth="3"
                         strokeDasharray={`${
                           (energyPercentage / 100) * 87.96
@@ -1418,7 +1418,7 @@ export default function Home() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span
                         className={`text-xs font-bold ${
-                          energy <= 100 ? "text-red-400" : "text-green-400"
+                          energy <= 20 ? "text-red-400" : "text-green-400"
                         }`}
                       >
                         ⚡
@@ -1428,10 +1428,10 @@ export default function Home() {
                   <div className="flex flex-col">
                     <span
                       className={`font-bold text-lg ${
-                        energy <= 100 ? "text-red-400" : "text-white"
+                        energy <= 20 ? "text-red-400" : "text-white"
                       }`}
                     >
-                      {energy} / 500
+                      {energy} / 100
                     </span>
                     <span className="text-xs text-gray-400">{t.energy}</span>
                   </div>
