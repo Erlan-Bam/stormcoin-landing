@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-// import Lottie from "lottie-react";
-// import lightningVFX from "@/public/lightning-vfx.json";
+import Lottie from "lottie-react";
+import lightningVFX from "@/public/lightning-vfx.json";
 
 // Types
 type ToastType = "error" | "success" | "info";
@@ -102,10 +102,10 @@ const translations: Record<Language, Translations> = {
     game: "Game",
     friends: "Friends",
     energy: "Energy",
-    noEnergy: "No energy left! Wait for restore or use premium refill!",
+    noEnergy: "No energy left! Use Boost to refill!",
     energyRestored: "Energy fully restored! Keep tapping!",
     openingBot: "Opening Telegram Bot...",
-    boostActivated: "Boost activated! 3x coins for 30 seconds!",
+    boostActivated: "Boost activated! 5x coins for 10 seconds!",
     boostEnded: "Boost ended! Back to normal tapping",
     noBoosts: "No boosts left!",
   },
@@ -149,10 +149,10 @@ const translations: Record<Language, Translations> = {
     game: "Game",
     friends: "Friends",
     energy: "Energy",
-    noEnergy: "No energy left! Wait for restore or use premium refill!",
+    noEnergy: "No energy left! Use Boost to refill!",
     energyRestored: "Energy fully restored! Keep tapping!",
     openingBot: "Opening Telegram Bot...",
-    boostActivated: "Boost activated! 3x coins for 30 seconds!",
+    boostActivated: "Boost activated! 5x coins for 10 seconds!",
     boostEnded: "Boost ended! Back to normal tapping",
     noBoosts: "No boosts left!",
   },
@@ -196,10 +196,10 @@ const translations: Record<Language, Translations> = {
     game: "Juego",
     friends: "Amigos",
     energy: "Energía",
-    noEnergy: "¡Sin energía! ¡Espera la restauración o usa recarga premium!",
+    noEnergy: "¡Sin energía! ¡Usa Impulso para recargar!",
     energyRestored: "¡Energía completamente restaurada! ¡Sigue tocando!",
     openingBot: "Abriendo Bot de Telegram...",
-    boostActivated: "¡Impulso activado! ¡3x monedas por 30 segundos!",
+    boostActivated: "¡Impulso activado! ¡5x monedas por 10 segundos!",
     boostEnded: "¡Impulso terminado! Vuelve al toque normal",
     noBoosts: "¡No quedan impulsos!",
   },
@@ -243,11 +243,10 @@ const translations: Record<Language, Translations> = {
     game: "Jeu",
     friends: "Amis",
     energy: "Énergie",
-    noEnergy:
-      "Plus d'énergie! Attendez la restauration ou utilisez la recharge premium!",
+    noEnergy: "Plus d'énergie! Utilisez Boost pour recharger!",
     energyRestored: "Énergie complètement restaurée! Continuez à taper!",
     openingBot: "Ouverture du Bot Telegram...",
-    boostActivated: "Boost activé! 3x pièces pendant 30 secondes!",
+    boostActivated: "Boost activé! 5x pièces pendant 10 secondes!",
     boostEnded: "Boost terminé! Retour au tap normal",
     noBoosts: "Plus de boosts!",
   },
@@ -291,11 +290,10 @@ const translations: Record<Language, Translations> = {
     game: "Gioco",
     friends: "Amici",
     energy: "Energia",
-    noEnergy:
-      "Nessuna energia! Aspetta il ripristino o usa la ricarica premium!",
+    noEnergy: "Nessuna energia! Usa Boost per ricaricare!",
     energyRestored: "Energia completamente ripristinata! Continua a tappare!",
     openingBot: "Apertura Bot Telegram...",
-    boostActivated: "Boost attivato! 3x monete per 30 secondi!",
+    boostActivated: "Boost attivato! 5x monete per 10 secondi!",
     boostEnded: "Boost finito! Torna al tap normale",
     noBoosts: "Nessun boost rimasto!",
   },
@@ -339,10 +337,10 @@ const translations: Record<Language, Translations> = {
     game: "Jogo",
     friends: "Amigos",
     energy: "Energia",
-    noEnergy: "Sem energia! Aguarde a restauração ou use recarga premium!",
+    noEnergy: "Sem energia! Use Impulso para recarregar!",
     energyRestored: "Energia totalmente restaurada! Continue tocando!",
     openingBot: "Abrindo Bot do Telegram...",
-    boostActivated: "Boost ativado! 3x moedas por 30 segundos!",
+    boostActivated: "Boost ativado! 5x moedas por 10 segundos!",
     boostEnded: "Boost terminou! Volta ao toque normal",
     noBoosts: "Sem boosts restantes!",
   },
@@ -387,11 +385,10 @@ const translations: Record<Language, Translations> = {
     game: "Spiel",
     friends: "Freunde",
     energy: "Energie",
-    noEnergy:
-      "Keine Energie mehr! Warte auf Wiederherstellung oder nutze Premium-Aufladung!",
+    noEnergy: "Keine Energie mehr! Benutze Boost zum Aufladen!",
     energyRestored: "Energie vollständig wiederhergestellt! Weiter tippen!",
     openingBot: "Telegram Bot wird geöffnet...",
-    boostActivated: "Boost aktiviert! 3x Münzen für 30 Sekunden!",
+    boostActivated: "Boost aktiviert! 5x Münzen für 10 Sekunden!",
     boostEnded: "Boost beendet! Zurück zum normalen Tippen",
     noBoosts: "Keine Boosts übrig!",
   },
@@ -435,11 +432,10 @@ const translations: Record<Language, Translations> = {
     game: "Spil",
     friends: "Venner",
     energy: "Energi",
-    noEnergy:
-      "Ingen energi tilbage! Vent på genoprettelse eller brug premium genopladning!",
+    noEnergy: "Ingen energi tilbage! Brug Boost til at genopfylde!",
     energyRestored: "Energi fuldt genoprettet! Fortsæt med at trykke!",
     openingBot: "Åbner Telegram Bot...",
-    boostActivated: "Boost aktiveret! 3x mønter i 30 sekunder!",
+    boostActivated: "Boost aktiveret! 5x mønter i 10 sekunder!",
     boostEnded: "Boost slut! Tilbage til normalt tryk",
     noBoosts: "Ingen boosts tilbage!",
   },
@@ -822,7 +818,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
-  const [currentBalance, setCurrentBalance] = useState(7);
+  const [currentBalance, setCurrentBalance] = useState(0);
   const [energy, setEnergy] = useState(100);
   const [toast, setToast] = useState<ToastData | null>(null);
   const [tapAnimation, setTapAnimation] = useState(false);
@@ -830,9 +826,8 @@ export default function Home() {
   const [showLightningVFX, setShowLightningVFX] = useState(false);
   const [ambientLightning, setAmbientLightning] = useState<number[]>([]);
   const [currentLanguage, setCurrentLanguage] = useState<Language>("en-ca");
-  const [tapMultiplier, setTapMultiplier] = useState(1);
-  const [boostTimeLeft, setBoostTimeLeft] = useState(0);
   const [boostsLeft, setBoostsLeft] = useState(3);
+  const [refillsLeft, setRefillsLeft] = useState(3);
   const tapTimestamps = useRef<number[]>([]);
 
   // Get current translations
@@ -846,11 +841,13 @@ export default function Home() {
     const savedEnergy = localStorage.getItem("stormcoin_energy");
     const savedLanguage = localStorage.getItem("stormcoin_language");
     const savedBoosts = localStorage.getItem("stormcoin_boosts");
+    const savedRefills = localStorage.getItem("stormcoin_refills");
 
     if (savedBalance) setCurrentBalance(parseInt(savedBalance));
     if (savedEnergy) setEnergy(parseInt(savedEnergy));
     if (savedLanguage) setCurrentLanguage(savedLanguage as Language);
     if (savedBoosts) setBoostsLeft(parseInt(savedBoosts));
+    if (savedRefills) setRefillsLeft(parseInt(savedRefills));
   }, []);
 
   // Save state to localStorage whenever it changes
@@ -859,7 +856,8 @@ export default function Home() {
     localStorage.setItem("stormcoin_energy", energy.toString());
     localStorage.setItem("stormcoin_language", currentLanguage);
     localStorage.setItem("stormcoin_boosts", boostsLeft.toString());
-  }, [currentBalance, energy, currentLanguage, boostsLeft]);
+    localStorage.setItem("stormcoin_refills", refillsLeft.toString());
+  }, [currentBalance, energy, currentLanguage, boostsLeft, refillsLeft]);
 
   // Reset energy to 100 on page reload (after initial load)
   useEffect(() => {
@@ -869,19 +867,6 @@ export default function Home() {
       setEnergy(100);
     }
   }, []);
-
-  // Boost timer effect
-  useEffect(() => {
-    if (boostTimeLeft > 0) {
-      const timer = setTimeout(() => {
-        setBoostTimeLeft((prev) => prev - 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else if (boostTimeLeft === 0 && tapMultiplier > 1) {
-      setTapMultiplier(1);
-      showToast(t.boostEnded, "info");
-    }
-  }, [boostTimeLeft, tapMultiplier]);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -929,37 +914,59 @@ export default function Home() {
       setTimeout(() => setShowLightningVFX(false), 3000);
     }
 
+    // Determine multiplier (5x when boost active)
+    const multiplier = boostCooldown ? 5 : 1;
+
     // Decrease energy by 1
     setEnergy((prev) => Math.max(0, prev - 1));
-    // Increase balance by tap multiplier (1 or more during boost)
-    setCurrentBalance((prev) => prev + tapMultiplier);
+    // Increase balance by multiplier
+    setCurrentBalance((prev) => prev + multiplier);
     // Trigger tap animation
     setTapAnimation(true);
     setTimeout(() => setTapAnimation(false), 200);
   };
 
   const handleBoost = () => {
-    if (boostCooldown || boostsLeft <= 0) {
-      showToast(boostsLeft <= 0 ? t.noBoosts : t.cooldown, "error");
+    if (boostCooldown) {
+      showToast(t.cooldown, "info");
       return;
     }
 
-    // Activate boost multiplier for 30 seconds
-    setTapMultiplier(3);
-    setBoostTimeLeft(30);
+    if (boostsLeft <= 0) {
+      showToast(t.noBoosts, "error");
+      return;
+    }
+
+    // Activate turbo boost - show visual effect
     setBoostsLeft((prev) => prev - 1);
     showToast(t.boostActivated, "success");
 
-    // Set cooldown for 3 seconds
+    // Show lightning VFX
+    setShowLightningVFX(true);
+    setTimeout(() => setShowLightningVFX(false), 3000);
+
+    // Set cooldown for 10 seconds
     setBoostCooldown(true);
     setTimeout(() => {
       setBoostCooldown(false);
-    }, 3000);
+      showToast(t.boostEnded, "info");
+    }, 10000); // 10 seconds boost duration
   };
 
   const handleEnergyRefill = () => {
-    // Separate function for energy refill (can be added later as premium feature)
-    setEnergy(100);
+    if (refillsLeft <= 0) {
+      showToast(t.noBoosts, "error");
+      return;
+    }
+
+    if (energy >= 100) {
+      showToast("Energy is already full!", "info");
+      return;
+    }
+
+    // Restore 100 energy (max 100)
+    setEnergy((prev) => Math.min(prev + 100, 100));
+    setRefillsLeft((prev) => prev - 1);
     showToast(t.energyRestored, "success");
   };
 
@@ -1269,31 +1276,20 @@ export default function Home() {
                   </span>
                   <span className="text-gray-600">|</span>
                   <span>
-                    <span
-                      className={`font-semibold ${
-                        tapMultiplier > 1
-                          ? "text-yellow-400 animate-pulse"
-                          : "text-white"
-                      }`}
-                    >
-                      {tapMultiplier}
+                    <span className="text-white font-semibold">
+                      {boostCooldown ? 5 : 1}
                     </span>{" "}
                     {t.perTap}
-                    {tapMultiplier > 1 && (
-                      <span className="ml-1 text-yellow-400 text-xs">
-                        ({boostTimeLeft}s)
-                      </span>
-                    )}
                   </span>
                 </div>
               </div>
 
               {/* Tapping Coin Section */}
               <div className="flex justify-center mb-8 relative">
-                {/* Lightning VFX using CSS animations */}
+                {/* Optimized Lightning VFX - Only 3 animations for performance */}
                 {showLightningVFX && (
                   <>
-                    {/* Center Main Lightning Effect */}
+                    {/* Center Main Lightning - Reduced Size */}
                     <div
                       className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center"
                       style={{
@@ -1302,12 +1298,12 @@ export default function Home() {
                         animation: "fadeInOut 2.5s ease-in-out",
                       }}
                     >
-                      <div className="w-[300px] h-[300px] relative">
-                        <div className="absolute inset-0 bg-linear-to-r from-blue-400 via-yellow-300 to-blue-400 rounded-full blur-3xl animate-pulse opacity-80"></div>
-                        <div className="absolute inset-4 bg-linear-to-r from-cyan-300 via-white to-cyan-300 rounded-full blur-2xl animate-ping opacity-60"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl animate-bounce">
-                          ⚡
-                        </div>
+                      <div className="w-[300px] h-[300px]">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
                       </div>
                     </div>
 
@@ -1321,11 +1317,12 @@ export default function Home() {
                         animation: "fadeInOut 2s ease-in-out 0.15s",
                       }}
                     >
-                      <div className="w-[140px] h-[140px] opacity-50 relative">
-                        <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-blue-400 rounded-full blur-2xl animate-pulse"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl animate-spin">
-                          ⚡
-                        </div>
+                      <div className="w-[140px] h-[140px] opacity-50">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
                       </div>
                     </div>
 
@@ -1339,11 +1336,12 @@ export default function Home() {
                         animation: "fadeInOut 2.2s ease-in-out 0.1s",
                       }}
                     >
-                      <div className="w-[150px] h-[150px] opacity-45 relative">
-                        <div className="absolute inset-0 bg-linear-to-r from-yellow-400 to-orange-400 rounded-full blur-2xl animate-ping"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl animate-pulse">
-                          ⚡
-                        </div>
+                      <div className="w-[150px] h-[150px] opacity-45">
+                        <Lottie
+                          animationData={lightningVFX}
+                          loop={false}
+                          autoplay={true}
+                        />
                       </div>
                     </div>
                   </>
@@ -1355,8 +1353,6 @@ export default function Home() {
                   className={`relative w-64 h-64 rounded-full bg-linear-to-b from-[#2d3250] via-[#1e213a] to-[#141629] border-8 flex items-center justify-center shadow-2xl transition-all duration-200 ${
                     energy <= 0
                       ? "border-red-500/50 opacity-50 cursor-not-allowed"
-                      : tapMultiplier > 1
-                      ? "border-yellow-400/50 shadow-yellow-400/30 active:scale-95 hover:border-yellow-400/70"
                       : "border-blue-500/30 active:scale-95 hover:border-blue-500/50"
                   } ${tapAnimation ? "scale-95" : ""}`}
                 >
@@ -1375,14 +1371,14 @@ export default function Home() {
                     </>
                   )}
                 </button>
-                {/* +X floating animation */}
+                {/* +1 floating animation */}
                 {tapAnimation && (
                   <div
                     className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl font-bold animate-floatUp pointer-events-none ${
-                      tapMultiplier > 1 ? "text-yellow-400" : "text-blue-400"
+                      boostCooldown ? "text-yellow-300" : "text-blue-400"
                     }`}
                   >
-                    +{tapMultiplier}
+                    +{boostCooldown ? 5 : 1}
                   </div>
                 )}
               </div>
@@ -1440,25 +1436,72 @@ export default function Home() {
                     <span className="text-xs text-gray-400">{t.energy}</span>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex gap-2">
+                  {/* Refill Button */}
                   <button
-                    onClick={handleBoost}
-                    disabled={boostCooldown || boostsLeft <= 0}
-                    className={`px-6 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
-                      boostCooldown || boostsLeft <= 0
+                    onClick={handleEnergyRefill}
+                    disabled={refillsLeft <= 0}
+                    className={`flex-1 px-4 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
+                      refillsLeft <= 0
                         ? "bg-gray-600 opacity-50 cursor-not-allowed"
-                        : tapMultiplier > 1
-                        ? "bg-linear-to-r from-yellow-600 to-orange-500 hover:from-yellow-500 hover:to-orange-400 active:scale-95 hover:shadow-xl hover:shadow-yellow-500/50"
-                        : "bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 active:scale-95 hover:shadow-xl hover:shadow-blue-500/50"
+                        : "bg-linear-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 active:scale-95 hover:shadow-xl hover:shadow-green-500/50"
                     }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">🚀</span>
-                      <span>
-                        {boostCooldown
-                          ? t.cooldown
-                          : `${t.boost} (${boostsLeft}/3)`}
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="flex items-center gap-2">
+                        <svg
+                          className="w-5 h-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 2v6"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="text-sm">Refill</span>
+                      </div>
+                      <span className="text-xs opacity-80">
+                        {refillsLeft}/3
                       </span>
+                    </div>
+                  </button>
+
+                  {/* Boost Button */}
+                  <button
+                    onClick={handleBoost}
+                    disabled={boostCooldown || boostsLeft === 0}
+                    className={`flex-1 px-4 py-3 rounded-2xl font-bold text-white shadow-lg transition-all duration-300 ${
+                      boostCooldown || boostsLeft === 0
+                        ? "bg-gray-600 opacity-50 cursor-not-allowed"
+                        : "bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 active:scale-95 hover:shadow-xl hover:shadow-blue-500/50 ring-2 ring-blue-400/10"
+                    }`}
+                  >
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-2xl ${
+                            boostCooldown ? "animate-pulse" : ""
+                          }`}
+                        >
+                          🚀
+                        </span>
+                        <span className="text-sm">
+                          {boostCooldown ? t.cooldown : t.boost}
+                        </span>
+                      </div>
+                      <span className="text-xs opacity-80">{boostsLeft}/3</span>
                     </div>
                   </button>
                 </div>
